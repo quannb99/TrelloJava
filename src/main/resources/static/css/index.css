@@ -1,0 +1,221 @@
+.btn1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: inherit;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
+
+
+/* header(header) */
+
+.header {
+    flex-basis: 40px;
+    display: flex;
+    align-items: center;
+    padding: 6px 6px;
+    background-color: #0067a3;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.header .btn1 {
+    background-color: #4c94be;
+    border-radius: 3px;
+    transition: background-color 150ms;
+}
+
+.header .btn1:hover {
+    background-color: #3385b5;
+}
+
+.boards-menu {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.boards-btn1 {
+    flex-basis: 90px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 0.80px;
+    padding: 0.60px 0.80px;
+}
+
+.boards-btn1-icon {
+    font-size: 17px;
+    padding-right: 12px;
+}
+
+.board-search {
+    flex-basis: 180px;
+    position: relative;
+    margin-left: 5px; 
+}
+
+.board-search-input {
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4c94be;
+    width: 100%;
+    padding: 0 30px 0 10px;
+    color: #fff;
+}
+
+.board-search-input:hover {
+    background-color: #66a4c8;
+}
+
+.search-icon {
+    font-size: 15px;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%) rotate(90deg);
+    color: #fff;
+}
+
+.logo {
+    flex: 1;
+    font-family: "Courgette", cursive;
+    font-size: 22px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 20px;
+    transition: color 150ms;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.logo:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.logo-icon {
+    padding-right: 4px;
+}
+
+.user-settings {
+    display: flex;
+    height: 30px;
+    color: #fff;
+}
+
+.user-settings-btn1 {
+    font-size: 15px;
+    width: 30px;
+    margin-right: 8px;
+}
+
+.user-settings-btn1:last-of-type {
+    margin-right: 0;
+}
+/*xu li menu doc*/
+.dropdown-menu1{
+    position: absolute;
+    width: 150px;
+    background: #fff;
+    height: auto;
+    margin: 5px auto;
+    opacity: 0;
+    transition:  all 0.5s linear;
+    left: 88.5%;
+    top: 6%;
+}
+.dropdown-menu1 ul li{
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.2s linear;
+    color: #757575;
+}
+.dropdown-menu1 ul li a{
+    padding: 10px;
+    display: block;
+    font-size: 12px;
+    color: #757575;
+    transition: all 0.2s linear;
+}
+.dropdown-menu1 ul li:hover{
+   background: #80ddd2;
+}
+.dropdown-menu1 ul li:hover a{
+    color: #fff;
+}
+.dropdown-menu1.active{
+    opacity: 1;
+}
+.dropdown-menu2{
+    position: relative;
+    position: absolute;
+    width: 150px;
+    background: #fff;
+    height: auto;
+    margin: 5px auto;
+    opacity: 0;
+    transition:  all 0.5s linear;
+    left: 79%;
+    top: 3%;
+}
+.dropdown-menu2 ul li{
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.2s linear;
+    color: #757575;
+}
+.dropdown-menu2 ul li button{    
+    font-size: 12px;
+    color: #757575;
+    transition: all 0.2s linear;
+    padding: 2px;
+}
+.dropdown-menu2 ul li:hover{
+   background: #80ddd2;
+}
+.dropdown-menu2 ul li:hover button{
+    color: #fff;
+}
+.dropdown-menu2.active{
+    opacity: 1;
+}
+
+
+.dropdown-menu3{
+    position: absolute;
+    width: 150px;
+    background: #fff;
+    height: auto;
+    margin: 5px auto;
+    opacity: 0;
+    transition:  all 0.5s linear;
+    right: 100%;
+    top: 24%;
+}
+.dropdown-menu3 ul li{
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.2s linear;
+    color: #757575;
+}
+.dropdown-menu3 ul li button{    
+    font-size: 12px;
+    color: #757575;
+    transition: all 0.2s linear;
+    padding: 2px;
+}
+.dropdown-menu3 ul li:hover{
+   background: #80ddd2;
+}
+.dropdown-menu3 ul li:hover button{
+    color: #fff;
+}
+.dropdown-menu3.active{
+    opacity: 1;
+}
+/*end header*/

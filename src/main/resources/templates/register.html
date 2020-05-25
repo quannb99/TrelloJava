@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8">
+	<title>Đăng Kí</title>
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+</head>
+<body>
+	
+        <main>
+            <div class="container">
+            <div class="login-form">
+                <form th:action="@{/register}" th:object="${user}" method="post">
+                    <h1 style="text-align: center;">Đăng Kí</h1>
+                    <div class="input-box">
+                        <i ></i>
+                        <input type="text" th:field="*{FULLNAME}" placeholder="Tên Người Dùng" required>
+                    </div>
+                    <div class="input-box">
+                        <i ></i>
+                        <input type="email" th:field="*{EMAIL}" placeholder="Email" required>
+                    </div>
+                    <div class="input-box">
+                        <i ></i>
+                        <input type="text" th:field="*{USERNAME}" placeholder="Nhập username" required>
+                    </div>
+                    <div class="input-box">
+                        <i ></i>
+                        <input type="password" th:field="*{PASSWORD}" placeholder="Nhập mật khẩu" required>
+                    </div>
+                    <div class="btn-box">
+                        <button type="submit">
+                            Đăng Kí
+                        </button>
+                    </div>
+                </form>
+                <a href="login">Quay lại đăng nhập</a>
+            </div>
+            </div>
+        </main>
+       
+</body>
+</html>

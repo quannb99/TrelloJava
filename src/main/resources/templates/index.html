@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<!-- link bootstrap -->
+	<link href="css/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="css/web/jquery/jquery.min.js"></script>
+	<script src="css/web/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	<script type="text/javascript">
+
+		// menu dọc khi click vào button trên thanh header 
+		$(document).ready(function(){
+			$(".active1").click(function(){
+				$(this).toggleClass("active");
+				$(".dropdown-menu1").toggleClass("active");
+			})
+		});
+		$(document).ready(function(){
+			$(".active2").click(function(){
+				$(this).toggleClass("active");
+				$(".dropdown-menu2").toggleClass("active");
+			})
+		});
+		$(document).ready(function(){
+			$(".active3").click(function(){
+				$(this).toggleClass("active");
+				$(".dropdown-menu3").toggleClass("active");
+			})
+		});
+	</script>
+</head>
+<body style="background: #fafbfc;">
+	<!-- header -->
+	<header class="header">
+
+		<div class="boards-menu">
+
+			<button class="boards-btn1 btn1"><i class="fab fa-trello boards-btn1-ico" style="margin-right: 2px;"></i>Bảng</button>
+
+			<div class="board-search">
+				<input type="search" class="board-search-input" aria-label="Board Search">
+				<i class="fas fa-search search-icon" aria-hidden="true"></i>
+			</div>
+
+		</div>
+
+		<div class="logo">
+
+			<h1 style="font-size: 22px; font-weight: 700;margin-bottom: 0px;"><i class="fab fa-trello logo-icon" aria-hidden="true"></i>Trello</h1>
+
+		</div>
+		<div class="user-settings">
+
+			<button class="user-settings-btn1 btn1 active2" aria-label="Create">
+				<i class="fas fa-plus" aria-hidden="true"></i>
+			</button>
+			<div class="dropdown-menu2 rounded">
+				<ul>
+					<li>Tạo mới</li>
+					<li><button class="btn active3">bảng cá nhân</button></li>
+					<li><button class="btn">bảng nhóm</button></li>
+					
+				</ul>
+				<div class="dropdown-menu3 rounded">
+				<ul>
+					<li><input type="text" name="nameboard" style="width: 98%" placeholder="nhập tên bảng" required="true"></li>
+					<li><button class="btn">Tạo bảng</button></li>					
+				</ul>
+			</div>
+			</div>
+			
+
+			<button class="user-settings-btn1 btn1" aria-label="Information">
+				<i class="fas fa-info-circle" aria-hidden="true"></i>
+			</button>
+
+			<button class="user-settings-btn1 btn1" aria-label="Notifications">
+				<i class="fas fa-bell" aria-hidden="true"></i>
+			</button>
+
+			<button class="user-settings-btn1 btn1 active1" aria-label="User Settings">
+				<i class="fas fa-user-circle" aria-hidden="true"></i>
+			</button>
+			<p></p>
+			<div class="dropdown-menu1 rounded">
+				<ul>
+					<li th:utext="${#request.userPrincipal.name}"> test</li>
+					<li ><a th:if="${msg != null}" th:text="${msg}" style="font-size: 12px;"></a></li>
+					<li ><a th:if="${msg == null}" style="font-size: 12px;"></a>Anonymous</li>
+					<li><a href="#">Hồ sơ tài khoản</a></li>
+					<li><a th:href="@{/logout}">Đăng xuất</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+	</header>
+	<!-- End of header -->
+
+	<!-- Board info bar -->
+	<section style="padding-bottom: 46px;">
+	</section>
+	<!-- End of board info bar -->
+	
+
+	<!-- Page Content -->
+	<div class="container" >
+
+		<div class="row">
+
+			<div class="col-lg-3">
+
+				<div class="list-group" style="padding-bottom: 5px;" >
+					<a href="#" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
+					<a href="#" class="list-group-item"><i class="fas fa-book logo-icon"></i></i>Mẫu</a>
+					<a href="#" class="list-group-item"><i class="fas fa-house-damage logo-icon"></i>Trang chủ</a>
+				</div>
+				<h6>Các nhóm </h6>
+				<ul class="list-group">
+					<a href=""><li class="list-group-item"><i class="fas fa-user-friends logo-icon"></i>nhóm 1</li></a>
+					<a href=""><li class="list-group-item"><i class="fas fa-user-friends logo-icon"></i>nhóm 2</li></a>
+
+				</ul>
+
+
+			</div>
+			<!-- /.col-lg-3 -->
+
+			<div class="col-lg-9">
+				<h5><i class="far fa-clock logo-icon"></i> Bảng xem gần đây </h5>
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class="bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+
+
+				</div>
+				<!-- /.row -->
+				<h5><i class="far fa-user logo-icon"></i></i> Bảng cá nhân </h5>
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+
+
+				</div>
+				<!-- /.row -->
+				<h5><i class="fas fa-user-friends logo-icon"></i> Bảng nhóm </h5>
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+
+
+				</div>
+				<!-- /.row -->
+
+
+			</div>
+			<!-- /.col-lg-9 -->
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+
+
+</body>
+</html>
