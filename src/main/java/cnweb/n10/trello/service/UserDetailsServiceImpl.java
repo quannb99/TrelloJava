@@ -29,7 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
         }
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-        GrantedAuthority auth = new SimpleGrantedAuthority("USER");
+        String role = "USER";
+        GrantedAuthority auth = new SimpleGrantedAuthority(role);
         grantList.add(auth);
         System.out.println("Found User: " + userName);
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUSERNAME(), user.getPASSWORD(),grantList);

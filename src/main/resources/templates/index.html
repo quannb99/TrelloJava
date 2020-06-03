@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Index</title>
@@ -31,91 +31,26 @@
 				$(".dropdown-menu2").toggleClass("active");
 			})
 		});
-    // ẩn hiện overlay panel
-		 function on() {
-		 	document.getElementById("overlay").style.display = "block";
-		 }
-
-		 function off() {
-		 	document.getElementById("overlay").style.display = "none";
-		 }
-		 //chuyển màu cho backgroud
-		 function xanhduong() {
-		 	document.getElementById("color_background").style.background = "#17a2b8";
-		 }
-
-		 function vang() {
-		 	document.getElementById("color_background").style.background = "#ecec42";
-		 }
-		 function xanhla() {
-		 	document.getElementById("color_background").style.background = "#59a759";
-		 }
 		
+		// alert form hiện ra khi ấn button thêm bảng 
+		 function testPromptDialog()  {
+ 
+              var result = prompt("Nhập tên bảng", "ví dụ: nam-quân-123...");
+ 
+              if(result != null)  {
+                  alert("Tạo bảng: " + result + " thành công");
+              }
+         }
 	</script>
 </head>
 <body style="background: #fafbfc;">
 
 	<!--  nếu ông cắt header thì xóa đoạn header này đi nhé , t đánh dấu rồi  -->
 	<!-- header -->
-	<header class="header">
-
-		<div class="boards-menu">
-
-			<button class="boards-btn1 btn1"><i class="fab fa-trello boards-btn1-ico" style="margin-right: 2px;"></i>Bảng</button>
-
-			<div class="board-search">
-				<input type="text"  name="search" id="search" class="board-search-input" aria-label="Board Search">
-				<i class="fas fa-search search-icon" aria-hidden="true"></i>
-			</div>
-		</div>
-		<div class="logo">
-
-			<h1 style="font-size: 22px; font-weight: 700;margin-bottom: 0px;"><i class="fab fa-trello logo-icon" aria-hidden="true"></i>Trello</h1>
-
-		</div>
-		<div class="user-settings">
-
-			<button class="user-settings-btn1 btn1 active2" aria-label="Create">
-				<i class="fas fa-plus" aria-hidden="true"></i>
-			</button>
-			<!-- menu doc 2 -->
-			<div class="dropdown-menu2 rounded">
-				<ul>
-					<li>Tạo mới</li>
-					<li><button class="btn" onclick="on()">bảng cá nhân</button></li>
-					<li><button class="btn" onclick="on()">bảng nhóm</button></li>				
-				</ul>
-			</div>
-			
-
-			<button class="user-settings-btn1 btn1" aria-label="Information">
-				<i class="fas fa-info-circle" aria-hidden="true"></i>
-			</button>
-
-			<button class="user-settings-btn1 btn1" aria-label="Notifications">
-				<i class="fas fa-bell" aria-hidden="true"></i>
-			</button>
-
-			<button class="user-settings-btn1 btn1 active1" aria-label="User Settings">
-				<i class="fas fa-user-circle" aria-hidden="true"></i>
-			</button>
-
-			<!-- menu doc 1 -->
-			<div class="dropdown-menu1 rounded">
-				<ul>
-					<li th:utext="${#request.userPrincipal.name}"> test</li>
-					<li ><a th:if="${msg != null}" th:text="${msg}" style="font-size: 12px;"></a></li>
-					<li ><a th:if="${msg == null}" style="font-size: 12px;"></a>Anonymous</li>
-					<li><a href="#">Hồ sơ tài khoản</a></li>
-					<li><a th:href="@{/logout}">Đăng xuất</a></li>
-				</ul>
-			</div>
-
-		</div>
-
-	</header>
+	<div th:replace="/header :: header"/>
 	<!-- End of header (xóa đến đây nhé)-->
-	
+
+
 	<!-- Board info bar -->
 	<section style="padding-bottom: 70px;">
 	</section>
@@ -123,23 +58,23 @@
 	
 
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" >
 
 		<div class="row">
 
 			<div class="col-lg-3">
 
 				<div class="list-group" style="padding-bottom: 5px;" >
-					<a href="#" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
+					<a href="/board" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
 					<a href="#" class="list-group-item"><i class="fas fa-book logo-icon"></i></i>Mẫu</a>
 					<a href="#" class="list-group-item"><i class="fas fa-house-damage logo-icon"></i>Trang chủ</a>
 				</div>
-				<!-- <h6>Các nhóm </h6>
+				<h6>Các nhóm </h6>
 				<ul class="list-group">
 					<a href=""><li class="list-group-item"><i class="fas fa-user-friends logo-icon"></i>nhóm 1</li></a>
 					<a href=""><li class="list-group-item"><i class="fas fa-user-friends logo-icon"></i>nhóm 2</li></a>
 
-				</ul> -->
+				</ul>
 
 
 			</div>
@@ -207,7 +142,7 @@
 					</div>	
 					<div class="col-lg-3 col-md-6 mb-4">
 						<div class=" bg-info rounded">
-							<button class="btn-block" style="min-height: 100px;" onclick="on()">
+							<button class="btn-block" style="min-height: 100px;" onclick="testPromptDialog()">
 								<i class="fas fa-plus-circle" style="font-size: 30px;"></i>
 							</button>
 							
@@ -215,7 +150,37 @@
 					</div>	
 
 				</div>
-				
+				<!-- /.row -->
+				<h5><i class="fas fa-user-friends logo-icon"></i> Bảng nhóm </h5>
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded" >
+							<a href="#" style="min-height: 100px;display:block "> 
+								<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							</a>
+							
+						</div>
+					</div>	
+				<div class="col-lg-3 col-md-6 mb-4">
+						<div class=" bg-info rounded">
+							<button class="btn-block" style="min-height: 100px;" onclick="testPromptDialog()">
+								<i class="fas fa-plus-circle" style="font-size: 30px;"></i>
+							</button>
+							
+						</div>
+					</div>	
+
+				</div>
 				<!-- /.row -->
 
 
@@ -227,30 +192,7 @@
 
 	</div>
 	<!-- /.container -->
-	
-	<!-- OverLay -->
-		<div id="overlay">
-			<div style="width: 360px; margin: 30px auto;">
-				<form class="form-group clearfix ">
 
-					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
-						<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
-						<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
-						<button class="btn btn-danger btn-sm" style="margin-top: 53px;" onclick="off()"><i class="fas fa-times"></i></button>
-					</div>
-					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
-						<ul>
-							<li style="font-weight: 500;">Chọn phông nền bảng </li>
-							<li><input type="radio" name="1" value="" onclick="xanhduong()" />Xanh Dương</li>
-							<li><input type="radio" name="1" value="" onclick="vang()" />Vàng</li>
-							<li><input type="radio" name="1" value="" onclick="xanhla()" />Xanh lá</li>
-						</ul>
-
-
-					</div>
-				</form>		
-			</div>
-		</div>
 
 
 </body>

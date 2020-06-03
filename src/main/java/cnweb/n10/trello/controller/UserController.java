@@ -25,7 +25,7 @@ public class UserController {
                 .map(t -> "login")
                 .orElse("register");
     }
-    @GetMapping(value = {"/login","/"})
+    @GetMapping(value = {"/","/login"})
     public String login(){
         return "login";
     }

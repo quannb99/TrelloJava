@@ -24,11 +24,11 @@ public class UserService {
      * @return Trả về danh sách List<User> dựa theo limit, nếu limit == null thì trả findAll()
      */
 
-    public List<User> findAll(Integer limit) {
-        return Optional.ofNullable(limit)
-                .map(value -> userRepository.findAll(PageRequest.of(0, value)).getContent())
-                .orElseGet(() -> userRepository.findAll());
-    }
+//    public List<User> findAll(Integer limit) {
+//        return Optional.ofNullable(limit)
+//                .map(value -> userRepository.findAll(PageRequest.of(0, value)).getContent())
+//                .orElseGet(() -> userRepository.findAll());
+//    }
 
     /**
      * Thêm một User mới vào danh sách

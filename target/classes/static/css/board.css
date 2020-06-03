@@ -295,9 +295,8 @@
 }
 
 
-
 /*overlay*/
-#overlay1 {
+#overlay {
   position: fixed;
   display: none;
   width: 100%;
@@ -306,18 +305,20 @@
   z-index: 2;
   cursor: pointer;
 }
-#overlay1 form h3{
+#overlay form h3{
     margin: 20px auto;
     color: white;
     text-align: center;
 
 }
-#overlay1 form textarea{
+#overlay form textarea{
     width: 600px;
     height: 300px;
     margin-left: 28% ;
     border: dashed;
 }
-#overlay1 form ul li{
-     color: white;
-}
+/*#overlay form button {
+   
+    margin-left: 69% ;
+    
+}*/
