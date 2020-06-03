@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>header</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/menu_doc.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<!-- link bootstrap -->
+	<link href="css/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="css/web/jquery/jquery.min.js"></script>
+	<script src="css/web/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	<script type="text/javascript">
+
+		// menu dọc khi click vào button trên thanh header 
+		$(document).ready(function(){
+			$(".active1").click(function(){
+				$(this).toggleClass("active");
+				$(".dropdown-menu1").toggleClass("active");
+			})
+		});
+		$(document).ready(function(){
+			$(".active2").click(function(){
+				$(this).toggleClass("active");
+				$(".dropdown-menu2").toggleClass("active");
+			})
+		});
+
+		 // ẩn hiện overlay panel
+		 function on() {
+		 	document.getElementById("overlay").style.display = "block";
+		 }
+
+		 function off() {
+		 	document.getElementById("overlay").style.display = "none";
+		 }
+		 //chuyển màu cho backgroud
+		 function xanhduong() {
+		 	document.getElementById("color_background").style.background = "#17a2b8";
+		 }
+
+		 function vang() {
+		 	document.getElementById("color_background").style.background = "#ecec42";
+		 }
+		 function xanhla() {
+		 	document.getElementById("color_background").style.background = "#59a759";
+		 }
+		  // search ajax = file data.json
+		 $(document).ready(function(){
+		 	$.ajaxSetup({ cache: false });
+		 	$('#search').keyup(function(){
+		 		$('#result').html('');
+		 		$('#state').val('');
+		 		var searchField = $('#search').val();
+		 		var expression = new RegExp(searchField, "i");
+		 		$.getJSON('data.json', function(data) {
+		 			$.each(data, function(key, value){
+		 				if (value.name.search(expression) != -1 )
+		 				{
+		 					$('#result').append('<li class="list-group-item link-class"  style="left: 97px; z-index:2;">'+value.name+'</li>');
+		 				}
+		 			});   
+		 		});
+		 	});
+
+		 	// $('#result').on('click', 'li', function() {
+		 	// 	var click_text = $(this).text().split('|');
+		 	// 	$('#search').val($.trim(click_text[0]));
+		 	// 	$("#result").html('');
+		 	// });
+		 });
+		</script>
+	</head>
+	<body>
+		<!-- header -->
+		<header class="header">
+
+			<div class="boards-menu">
+
+				<button class="boards-btn1 btn1"><i class="fab fa-trello boards-btn1-ico" style="margin-right: 2px;"></i>Bảng</button>
+
+				<div class="board-search">
+					<input type="text"  name="search" id="search" class="board-search-input" aria-label="Board Search">
+					<i class="fas fa-search search-icon" aria-hidden="true"></i>
+				</div>
+				
+			</div>	
+			<div class="logo">
+
+				<h1 style="font-size: 22px; font-weight: 700;margin-bottom: 0px;"><i class="fab fa-trello logo-icon" aria-hidden="true"></i>Trello</h1>
+
+			</div>
+			<div class="user-settings">
+
+				<button class="user-settings-btn1 btn1 active2" aria-label="Create">
+					<i class="fas fa-plus" aria-hidden="true"></i>
+				</button>
+
+				<!-- menu doc -->
+				<div class="dropdown-menu2 rounded">
+					<ul>
+						<li>Tạo mới</li>
+						<li><button class="btn" onclick="on()">bảng cá nhân</button></li>
+						<li><button class="btn" onclick="on()">bảng nhóm</button></li>
+
+					</ul>
+				</div>
+
+
+				<button class="user-settings-btn1 btn1" aria-label="Information">
+					<i class="fas fa-info-circle" aria-hidden="true"></i>
+				</button>
+
+				<button class="user-settings-btn1 btn1" aria-label="Notifications">
+					<i class="fas fa-bell" aria-hidden="true"></i>
+				</button>
+
+				<button class="user-settings-btn1 btn1 active1" aria-label="User Settings">
+					<i class="fas fa-user-circle" aria-hidden="true"></i>
+				</button>
+
+				<!-- menu doc  -->
+				<div class="dropdown-menu1 rounded">
+					<ul>
+						<li><a href="#">Xin chào,(Name User)</a></li>
+						<li><a href="#">Hồ sơ tài khoản</a></li>
+						<li><a href="#">Đăng xuất</a></li>
+
+					</ul>
+				</div>
+
+			</div>
+
+		</header>
+		 <ul class="list-group" id="result" style="width: 300px; height: 0px; "></ul>
+		<!-- End of header -->
+		 
+
+		<!-- OverLay(div ẩn ) -->
+		<div id="overlay">
+			<div style="width: 360px; margin: 30px auto;">
+				<form class="form-group clearfix ">
+
+					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
+						<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
+						<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
+						<button class="btn btn-danger btn-sm" style="margin-top: 53px;" onclick="off()"><i class="fas fa-times"></i></button>
+					</div>
+					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
+						<ul>
+							<li style="font-weight: 500;">Chọn phông nền bảng </li>
+							<li><input type="radio" name="1" value="" onclick="xanhduong()" />Xanh Dương</li>
+							<li><input type="radio" name="1" value="" onclick="vang()" />Vàng</li>
+							<li><input type="radio" name="1" value="" onclick="xanhla()" />Xanh lá</li>
+						</ul>
+
+
+					</div>
+				</form>		
+			</div>
+		</div>
+
+	</body>
+	</html>

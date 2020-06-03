@@ -15,12 +15,12 @@
 /* header(header) */
 
 .header {
-    flex-basis: 40px;
+    /*flex-basis: 40px;*/
     display: flex;
     align-items: center;
     padding: 6px 6px;
     background-color: #0067a3;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
 }
 
 .header .btn1 {
@@ -90,7 +90,7 @@
     margin: 0 20px;
     transition: color 150ms;
     text-align: center;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     cursor: pointer;
 }
 
@@ -112,110 +112,9 @@
     font-size: 15px;
     width: 30px;
     margin-right: 8px;
+
 }
 
 .user-settings-btn1:last-of-type {
     margin-right: 0;
 }
-/*xu li menu doc*/
-.dropdown-menu1{
-    position: absolute;
-    width: 150px;
-    background: #fff;
-    height: auto;
-    margin: 5px auto;
-    opacity: 0;
-    transition:  all 0.5s linear;
-    left: 88.5%;
-    top: 6%;
-}
-.dropdown-menu1 ul li{
-    text-align: center;
-    text-transform: uppercase;
-    transition: all 0.2s linear;
-    color: #757575;
-}
-.dropdown-menu1 ul li a{
-    padding: 10px;
-    display: block;
-    font-size: 12px;
-    color: #757575;
-    transition: all 0.2s linear;
-}
-.dropdown-menu1 ul li:hover{
-   background: #80ddd2;
-}
-.dropdown-menu1 ul li:hover a{
-    color: #fff;
-}
-.dropdown-menu1.active{
-    opacity: 1;
-}
-.dropdown-menu2{
-    position: relative;
-    position: absolute;
-    width: 150px;
-    background: #fff;
-    height: auto;
-    margin: 5px auto;
-    opacity: 0;
-    transition:  all 0.5s linear;
-    left: 79%;
-    top: 3%;
-}
-.dropdown-menu2 ul li{
-    text-align: center;
-    text-transform: uppercase;
-    transition: all 0.2s linear;
-    color: #757575;
-}
-.dropdown-menu2 ul li button{    
-    font-size: 12px;
-    color: #757575;
-    transition: all 0.2s linear;
-    padding: 2px;
-}
-.dropdown-menu2 ul li:hover{
-   background: #80ddd2;
-}
-.dropdown-menu2 ul li:hover button{
-    color: #fff;
-}
-.dropdown-menu2.active{
-    opacity: 1;
-}
-
-
-.dropdown-menu3{
-    position: absolute;
-    width: 150px;
-    background: #fff;
-    height: auto;
-    margin: 5px auto;
-    opacity: 0;
-    transition:  all 0.5s linear;
-    right: 100%;
-    top: 24%;
-}
-.dropdown-menu3 ul li{
-    text-align: center;
-    text-transform: uppercase;
-    transition: all 0.2s linear;
-    color: #757575;
-}
-.dropdown-menu3 ul li button{    
-    font-size: 12px;
-    color: #757575;
-    transition: all 0.2s linear;
-    padding: 2px;
-}
-.dropdown-menu3 ul li:hover{
-   background: #80ddd2;
-}
-.dropdown-menu3 ul li:hover button{
-    color: #fff;
-}
-.dropdown-menu3.active{
-    opacity: 1;
-}
-/*end header*/
