@@ -238,20 +238,20 @@
 				<button class="btn btn-success btn-sm btn-block" style="margin-top: 53px;" type="submit">Tạo Bảng</button>
 
 			</div>
-		</form>	
+		
 			<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
 				<ul style="margin-bottom: -8px; ">
-					<li style="font-weight: 500;">Chọn phông nền bảng </li>
+					<li style="font-weight: 700;">Chọn phông nền bảng </li>
 					<li><input type="radio" th:field="*{BGR}" name="bc" value="blue" onclick="xanhduong()" />Xanh Dương</li>
 					<li><input type="radio" th:field="*{BGR}" name="bc" value="yellow" onclick="vang()" />Vàng</li>
 					<li><input type="radio" th:field="*{BGR}" name="bc" value="green" onclick="xanhla()" />Xanh lá</li>
-					<li><button class="btn btn-danger btn-sm" style="  margin: -26px 0px 0px 148px;" onclick="off()"><i class="fas fa-times"></i></button></li>
-					<input type="text" th:field="*{USERNAME}" th:value="${#request.getUserPrincipal().getName()}" value="test">
-					<input type="hidden" th:field="*{STAR}" value="1" th:value="1">
+					<li><h5 style="margin : 0px 0px 0px 156px;"><i class="fas fa-window-close text-danger"onclick="off()"></i></h5></li>
+					<!-- <input type="text" th:field="*{USERNAME}" th:value="${#request.getUserPrincipal().getName()}" value="test">
+					<input type="hidden" th:field="*{STAR}" value="1" th:value="1"> -->
 				</ul>
 
 			</div>
-		
+		</form>	
 	</div>
 </div>
 
