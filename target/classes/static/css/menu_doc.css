@@ -23,7 +23,6 @@
     font-size: 12px;
     color: #757575;
     transition: all 0.2s linear;
-    margin-bottom: 0px;
 }
 .dropdown-menu1 ul li:hover{
    background: #80ddd2;
@@ -68,36 +67,30 @@
     opacity: 1;
 }
 
-
-.dropdown-menu3{
-    position: absolute;
-    width: 150px;
-    background: #fff;
-    height: auto;
-    opacity: 0;
-    transition:  all 0.5s linear;
-    right: 100%;
-    top: 20%;
-}
-.dropdown-menu3 ul li{
-    text-align: center;
-    text-transform: uppercase;
-    transition: all 0.2s linear;
-    color: #757575;
-}
-.dropdown-menu3 ul li button{    
-    font-size: 12px;
-    color: #757575;
-    transition: all 0.2s linear;
-    padding: 2px;
-}
-.dropdown-menu3 ul li:hover{
-   background: #80ddd2;
-}
-.dropdown-menu3 ul li:hover button{
-    color: #fff;
-}
-.dropdown-menu3.active{
-    opacity: 1;
-}
 /*end header*/
+
+/*overlay*/
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+#overlay form h3{
+    margin: 20px auto;
+    color: white;
+    text-align: center;
+
+}
+#overlay form textarea{
+    width: 600px;
+    height: 300px;
+    margin-left: 28% ;
+    border: dashed;
+}
+#overlay form ul li{
+     color: white;
+}

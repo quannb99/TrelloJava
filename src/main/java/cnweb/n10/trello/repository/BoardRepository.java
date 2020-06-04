@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BoardRepository extends JpaRepository<Board, Integer> {
     Board findBoardByNAME(String NAME);
+    Board findBoardByUSERNAME(String USERNAME);
 
     @Query("SELECT b from boarddb b")
     Page<Board> findAllBoard(Pageable pageable);

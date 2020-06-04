@@ -14,4 +14,5 @@ public class Board implements Serializable{
     private String NAME;
     private Integer STAR;
     private String BGR;
+    private String USERNAME;
 }

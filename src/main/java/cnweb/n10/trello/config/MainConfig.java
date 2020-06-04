@@ -1,5 +1,6 @@
 package cnweb.n10.trello.config;
 
+import cnweb.n10.trello.model.BoardValidate;
 import cnweb.n10.trello.model.UserValidate;
 import cnweb.n10.trello.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,8 @@ public class MainConfig extends WebSecurityConfigurerAdapter {
     @Bean
     UserValidate userValidate(){
         return new UserValidate();
-    };
+    }
+    @Bean
+    BoardValidate boardValidate(){ return new BoardValidate();}
 }
 

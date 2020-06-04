@@ -57,16 +57,15 @@
 		 		$("#hien2").hide();
 		 	})
 		 })
-		 // alert form hiện ra khi ấn button thêm bảng 
-		 function testPromptDialog()  {
- 
-              var result = prompt("Nhập tên bảng", "ví dụ: nam-quân-123...");
- 
-              if(result != null)  {
-                  alert("Tạo bảng: " + result + " thành công");
-              }
-         }
-		 // ẩn hiện overlay panel
+		   // ẩn hiện overlay panel nội dung thẻ
+		   function on1() {
+		   	document.getElementById("overlay1").style.display = "block";
+		   }
+
+		   function off1() {
+		   	document.getElementById("overlay1").style.display = "none";
+		   }
+		 // ẩn hiện overlay panel tạo bảng
 		 function on() {
 		 	document.getElementById("overlay").style.display = "block";
 		 }
@@ -74,12 +73,25 @@
 		 function off() {
 		 	document.getElementById("overlay").style.display = "none";
 		 }
+		  //chuyển màu cho backgroud
+		  function xanhduong() {
+		  	document.getElementById("color_background").style.background = "#17a2b8";
+		  }
+
+		  function vang() {
+		  	document.getElementById("color_background").style.background = "#ecec42";
+		  }
+		  function xanhla() {
+		  	document.getElementById("color_background").style.background = "#59a759";
+		  }
 		</script>
 	</head>
 
 	<body style="    background-color: #0079bf;">
 		<!-- header -->
-		<div th:replace="/header :: header"/>
+		<header>
+			<div th:replace="/header :: header"/>
+		</header>
 		<!-- End of header -->
 
 
@@ -115,14 +127,14 @@
 				<h3 class="list-title">Tasks to Do</h3>
 
 				<ul class="list-items">
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
 
 				</ul>
 
@@ -147,10 +159,10 @@
 				<h3 class="list-title">Tasks to Do</h3>
 
 				<ul class="list-items">
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
-					<li onclick="on()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
 				</ul>
 
 				<!-- id = an : nhấn vào button x thì sẽ hiện , id = hien : nhấn vào button Add a card ... thì sẽ ẩn -->
@@ -168,7 +180,6 @@
 				<button class="add-card-btn1 btn1" value="show">Add a card</button>
 
 			</div>
-
 
 
 
@@ -191,17 +202,41 @@
 		</section>
 		<!-- End of lists container -->
 
-		<!-- OverLay -->
-		<div id="overlay">
+		<!-- OverLay 1 -->
+		<div id="overlay1">
 			<form class="form-group">
 				<h3>Nội Dung Thẻ </h3>
 				<textarea id="comment"></textarea>
 				<div class="row" style="margin-left: 67%" >
 					<button class="btn btn-success btn-sm col-lg-1" >Lưu </button>
-					<button class="btn btn-danger btn-sm col-lg-1" onclick="off()"><i class="fas fa-times"></i></button>
+					<button class="btn btn-danger btn-sm col-lg-1" onclick="off1()"><i class="fas fa-times"></i></button>
 				</div>
 			</form>
 
+		</div>
+
+		<!-- OverLay 2 -->
+		<div id="overlay">
+			<div style="width: 360px; margin: 30px auto;">
+				<form class="form-group clearfix ">
+
+					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
+						<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
+						<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
+						<button class="btn btn-danger btn-sm" style="margin-top: 53px;" onclick="off()"><i class="fas fa-times"></i></button>
+					</div>
+					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
+						<ul>
+							<li style="font-weight: 500;">Chọn phông nền bảng </li>
+							<li><input type="radio" name="1" value="" onclick="xanhduong()" />Xanh Dương</li>
+							<li><input type="radio" name="1" value="" onclick="vang()" />Vàng</li>
+							<li><input type="radio" name="1" value="" onclick="xanhla()" />Xanh lá</li>
+						</ul>
+
+
+					</div>
+				</form>		
+			</div>
 		</div>
 	</body>
 	</html>
