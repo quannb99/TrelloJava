@@ -180,31 +180,15 @@
 			<h5><i class="far fa-user logo-icon"></i></i> Bảng cá nhân </h5>
 			<div class="row">
 
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class=" bg-info rounded" >
+				<div class="col-lg-3 col-md-6 mb-4" th:each="board : ${boards}">
+					<div class=" bg-info rounded" th:style="'background-color: '+ ${board.BGR} + '!important;'">
 						<a href="#" style="min-height: 100px;display:block ">
-							<p style="color: white; padding-left: 5px;"> tên bảng </p>
+							<p style="color: white; padding-left: 5px;" th:text="${board.NAME}">  </p>
 						</a>
 
 					</div>
 				</div>
 
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class=" bg-info rounded" >
-						<a href="#" style="min-height: 100px;display:block ">
-							<p style="color: white; padding-left: 5px;"> tên bảng </p>
-						</a>
-
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class=" bg-info rounded" >
-						<a href="#" style="min-height: 100px;display:block ">
-							<p style="color: white; padding-left: 5px;"> tên bảng </p>
-						</a>
-
-					</div>
-				</div>
 				<div class="col-lg-3 col-md-6 mb-4">
 					<div class=" bg-info rounded">
 						<button class="btn-block" style="min-height: 100px;" onclick="on()">
@@ -231,7 +215,7 @@
 <!-- OverLay -->
 <div id="overlay">
 	<div style="width: 360px; margin: 30px auto;">
-		<form class="form-group clearfix" th:action="@{/addBoard}" method="post" th:object="${board}">
+		<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}">
 
 			<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
 				<input type="text" th:field="*{NAME}" name="" class="rounded" placeholder="nhập tiêu đề bảng">
