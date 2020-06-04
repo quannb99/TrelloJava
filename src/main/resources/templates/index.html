@@ -107,7 +107,7 @@
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#" th:utext="${#request.userPrincipal.name}"> </a></li>
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#">Hồ sơ tài khoản </a></li>
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="/logout">Đăng xuất</a></li>
-				<li th:if="${#request.getUserPrincipal() != null}" th:text="${username}"></li>
+<!--				<li th:if="${#request.getUserPrincipal() != null}" th:text="${username}"></li>-->
 			</ul>
 		</div>
 
@@ -130,9 +130,9 @@
 		<div class="col-lg-3">
 
 			<div class="list-group" style="padding-bottom: 5px;" >
-				<a href="#" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
+				<a href="/board" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
 				<a href="#" class="list-group-item"><i class="fas fa-book logo-icon"></i></i>Mẫu</a>
-				<a href="#" class="list-group-item"><i class="fas fa-house-damage logo-icon"></i>Trang chủ</a>
+				<a href="/index" class="list-group-item"><i class="fas fa-house-damage logo-icon"></i>Trang chủ</a>
 			</div>
 			<!-- <h6>Các nhóm </h6>
             <ul class="list-group">

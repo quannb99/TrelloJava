@@ -11,8 +11,11 @@ public class Board implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
 
+    @Column(nullable = false)
     private String NAME;
     private Integer STAR;
+    @Column(nullable = false)
     private String BGR;
+    @Column(nullable = false)
     private String USERNAME;
 }
