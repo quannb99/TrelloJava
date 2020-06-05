@@ -2,6 +2,7 @@ package cnweb.n10.trello.config;
 
 import cnweb.n10.trello.model.BoardValidate;
 import cnweb.n10.trello.model.TListValidate;
+import cnweb.n10.trello.model.TaskValidate;
 import cnweb.n10.trello.model.UserValidate;
 import cnweb.n10.trello.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,7 @@ public class MainConfig extends WebSecurityConfigurerAdapter {
     BoardValidate boardValidate(){ return new BoardValidate();}
     @Bean
     TListValidate tListValidate(){ return new TListValidate();}
+    @Bean
+    TaskValidate taskValidate(){ return new TaskValidate();}
 }
 

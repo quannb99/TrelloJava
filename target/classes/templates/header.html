@@ -92,9 +92,9 @@
 			</div>
 			<div class="user-settings">
 
-				<button class="user-settings-btn1 btn1" aria-label="Create" onclick="on()">
-					<i class="fas fa-plus" aria-hidden="true"></i>
-				</button>
+<!--				<button class="user-settings-btn1 btn1" aria-label="Create" onclick="on()">-->
+<!--					<i class="fas fa-plus" aria-hidden="true"></i>-->
+<!--				</button>-->
 
 
 				<button class="user-settings-btn1 btn1" aria-label="Information">
@@ -127,27 +127,27 @@
 
 
 		<!-- OverLay(div ẩn ) -->
-		<div id="overlay">
-			<div style="width: 360px; margin: 30px auto;">
-				<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}">
+<!--		<div id="overlay">-->
+<!--			<div style="width: 360px; margin: 30px auto;">-->
+<!--				<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}">-->
 
-					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">
-						<input type="text" th:field="*{NAME}" name="" class="rounded" placeholder="nhập tiêu đề bảng">
-						<button class="btn btn-success btn-sm " style="margin-top: 53px;" type="submit">Tạo Bảng</button>
-						<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
-					</div>
-					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
-						<ul>
-							<li style="font-weight: 500;">Chọn phông nền bảng </li>
-							<li><input type="radio" th:field="*{BGR}" name="bc" value="blue" onclick="xanhduong()" />Xanh Dương</li>
-							<li><input type="radio" th:field="*{BGR}" name="bc" value="yellow" onclick="vang()" />Vàng</li>
-							<li><input type="radio" th:field="*{BGR}" name="bc" value="green" onclick="xanhla()" />Xanh lá</li>
-						</ul>
+<!--					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">-->
+<!--						<input type="text" th:field="*{NAME}" name="" class="rounded" placeholder="nhập tiêu đề bảng">-->
+<!--						<button class="btn btn-success btn-sm " style="margin-top: 53px;" type="submit">Tạo Bảng</button>-->
+<!--						<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>-->
+<!--					</div>-->
+<!--					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >-->
+<!--						<ul>-->
+<!--							<li style="font-weight: 500;">Chọn phông nền bảng </li>-->
+<!--							<li><input type="radio" th:field="*{BGR}" name="bc" value="blue" onclick="xanhduong()" />Xanh Dương</li>-->
+<!--							<li><input type="radio" th:field="*{BGR}" name="bc" value="yellow" onclick="vang()" />Vàng</li>-->
+<!--							<li><input type="radio" th:field="*{BGR}" name="bc" value="green" onclick="xanhla()" />Xanh lá</li>-->
+<!--						</ul>-->
 
-					</div>
-				</form>
-			</div>
-		</div>
+<!--					</div>-->
+<!--				</form>-->
+<!--			</div>-->
+<!--		</div>-->
 
 	</body>
 	</html>
