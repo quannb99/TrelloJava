@@ -26,45 +26,53 @@
 				$(".dropdown-menu1").toggleClass("active");
 			})
 		});
+		// ẩn hiện thẻ trong danh sách thêm card	
+		 //mảng arr chứa 100 class khác nhằm cho việc ẩn hiện phần tử hidecardI,showcardI 	(đủ dùng vì bảng ko đến 100 list)
+		 //ko cần đụng gì ở đây
+		var arr = new Array (100);
+		for(var i =0;i<100;i++){
+			arr[i]=i;
+		}
 		$(document).ready(function(){
-			$(".active2").click(function(){
-				$(this).toggleClass("active");
-				$(".dropdown-menu2").toggleClass("active");
-			})
+
+			$.each(arr,function(index){
+				$(".hidecard"+arr[index]).click(function(){
+					$(".hidecard"+arr[index]).addClass("hide");
+					$(".showcard"+arr[index]).removeClass("hide");
+
+				});
+			});
+			
+		});
+		$(document).ready(function(){
+			$.each(arr,function(index){
+				$(".showcard"+arr[index]+" i").click(function(){
+					$(".hidecard"+arr[index]).removeClass("hide");
+					$(".showcard"+arr[index]).addClass("hide");
+
+				});
+			});
+			
 		});
 		
-		//ẩn hiện thẻ trong danh sách
-		$(document).ready(function(){
-			$("button[value='show']").click(function(){
-				$("div.list>button").hide();
-				$(".hien").show();
+		 //ẩn hiện thẻ trong danh sách thêm list
+		 function on2() {
+		 	document.getElementById("hidelist").style.display = "none";
+		 	document.getElementById("showlist").style.display = "block";
+		 }
 
-			})
-			$("button[value='hide']").click(function(){
-				$(".hien").hide();
-			})
-		})
+		 function off2() {
+		 	document.getElementById("hidelist").style.display = "block";
+		 	document.getElementById("showlist").style.display = "none";
+		 }
+		 // ẩn hiện overlay panel nội dung thẻ
+		 function on1() {
+		 	document.getElementById("overlay1").style.display = "block";
+		 }
 
-		 //ẩn hiện thẻ trong danh sách 2
-		 $(document).ready(function(){
-		 	$("button[value='show2']").click(function(){
-		 		$("#an2").hide();
-		 		$("#hien2").show();
-
-		 	})
-		 	$("button[value='hide2']").click(function(){
-		 		$("#an2").show();
-		 		$("#hien2").hide();
-		 	})
-		 })
-		   // ẩn hiện overlay panel nội dung thẻ
-		   function on1() {
-		   	document.getElementById("overlay1").style.display = "block";
-		   }
-
-		   function off1() {
-		   	document.getElementById("overlay1").style.display = "none";
-		   }
+		 function off1() {
+		 	document.getElementById("overlay1").style.display = "none";
+		 }
 		 // ẩn hiện overlay panel tạo bảng
 		 function on() {
 		 	document.getElementById("overlay").style.display = "block";
@@ -86,6 +94,11 @@
 		  }
 		</script>
 	</head>
+	<style type="text/css">
+		.hide{
+			display: none;
+		}
+	</style>
 
 	<body style="    background-color: #0079bf;">
 		<!-- header -->
@@ -121,6 +134,7 @@
 
 		<!-- Lists container -->
 		<section class="lists-container" >
+			
 			<!-- thẻ thứ 1 -->
 			<div class="list" th:each="board : ${boards}">
 
@@ -138,64 +152,115 @@
 
 				</ul>
 
-				<!-- id = an : nhấn vào button x thì sẽ hiện , id = hien : nhấn vào button Add a card ... thì sẽ ẩn -->
-				<div class="hien" style="display: none;">
+				 <!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
+
+				<div    class="hide showcard1"> <!-- showcard+i ở đây, là showcard+1  -->
 					<form>
 						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
-						<div >
+						<div style="display: flex;" >
 							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
-							<button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button>
+							<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+							<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
 						</div>
 					</form>
 
 				</div>
-
-				<button class="add-card-btn1 btn1" value="show">Add a card</button>
-				<!-- thẻ thứ 2 -->
+				<button class="add-card-btn1 btn1 hidecard1" ><!--hidecard+i ở đây, là hidecard+1  -->
+				Add a card</button>
 			</div>
+			<!-- hết thẻ thứ 1 -->
+			<!-- thẻ thứ 2 -->
+			<div class="list" th:each="board : ${boards}">
 
-<!--			<div class="list">-->
+				<h3 class="list-title" th:text="${board.NAME}"></h3>
 
-<!--				<h3 class="list-title">Tasks to Do</h3>-->
+				<ul class="list-items">
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
 
-<!--				<ul class="list-items">-->
-<!--					<li onclick="on1()">Complete mock-up for client website</li>-->
-<!--					<li onclick="on1()">Complete mock-up for client website</li>-->
-<!--					<li onclick="on1()">Complete mock-up for client website</li>-->
-<!--					<li onclick="on1()">Complete mock-up for client website</li>-->
-<!--				</ul>-->
+				</ul>
+
+					 <!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
+				<div    class="hide showcard2">  <!-- showcard+i ở đây, là showcard+2  -->
+					<form>
+						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
+						<div style="display: flex;" >
+							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
+							<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+							<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
+						</div>
+					</form>
+
+				</div>
+				<button class="add-card-btn1 btn1 hidecard2" > <!--hidecard+i ở đây, là hidecard+2  -->
+				Add a card</button>
+			</div>
+			<!-- hết thẻ thứ 2 -->
+			<!-- thẻ thứ 3 -->
+			<div class="list" th:each="board : ${boards}">
+
+				<h3 class="list-title" th:text="${board.NAME}"></h3>
+
+				<ul class="list-items">
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+					<li onclick="on1()">Complete mock-up for client website</li>
+
+				</ul>
 
 				<!-- id = an : nhấn vào button x thì sẽ hiện , id = hien : nhấn vào button Add a card ... thì sẽ ẩn -->
-<!--				<div class="hien" style="display: none;">-->
-<!--					<form>-->
-<!--						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">-->
-<!--						<div >-->
-<!--							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>-->
-<!--							<button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button>-->
-<!--						</div>-->
-<!--					</form>-->
-
-<!--				</div>-->
-
-<!--				<button class="add-card-btn1 btn1" value="show">Add a card</button>-->
-
-<!--			</div>-->
-
-
-
-			<div >
-				<button class="add-list-btn1 btn1 btn-block" id="an2" value="show2">Add a list</button>
-				<div class="list" id="hien2" style="display: none;">
+				<div    class="hide showcard3">
 					<form>
-						<input type="text" name="" placeholder="mời nhập tiêu đề " class="form-control">
-						<div>
-							<button type="submit" class="btn btn-success  btn-sm">Thêm danh sách</button>
-							<button class="btn btn-danger btn-sm" value="hide2"><i class="fas fa-times"></i></button>
+						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
+						<div style="display: flex;" >
+							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
+							<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+							<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
 						</div>
 					</form>
 
 				</div>
+				<button class="add-card-btn1 btn1 hidecard3" >Add a card</button>
 			</div>
+			<!-- hết thẻ thứ 3 -->
+
+			<!-- thẻ thứ 4 -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- ................. -->
+			<!-- hết thứ 4 -->
+
+			<!-- thêm list	 -->
+			<button class="add-list-btn1 btn1" id="hidelist" onclick="on2()">Add a list</button>
+			<div class="list" style="display: none;" id="showlist">
+				<!-- form nhập liệu thêm list ở đây -->
+				<form>
+					<input type="text" name="" placeholder="mời nhập tiêu đề " class="form-control">
+					<div style="display: flex;">
+						<button type="submit" class="btn btn-success btn-sm">Thêm danh sách</button>
+						<!-- <button class="btn btn-danger btn-sm" value="hide2"><i class="fas fa-times"></i></button> -->
+						<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" onclick="off2()"></i>
+					</div>
+				</form>
+
+			</div>
+			
 
 
 
@@ -209,7 +274,7 @@
 				<textarea id="comment"></textarea>
 				<div class="row" style="margin-left: 67%" >
 					<button class="btn btn-success btn-sm col-lg-1" >Lưu </button>
-					<button class="btn btn-danger btn-sm col-lg-1" onclick="off1()"><i class="fas fa-times"></i></button>
+					<i class="fas fa-window-close text-danger" style="font-size: 31px;" onclick="off1()"></i></button>
 				</div>
 			</form>
 
@@ -220,10 +285,10 @@
 			<div style="width: 360px; margin: 30px auto;">
 				<form class="form-group clearfix ">
 
-					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
+					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">
 						<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
 						<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
-						<button class="btn btn-danger btn-sm" style="margin-top: 53px;" onclick="off()"><i class="fas fa-times"></i></button>
+						<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
 					</div>
 					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
 						<ul>

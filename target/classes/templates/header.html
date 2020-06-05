@@ -25,12 +25,6 @@
 				$(".dropdown-menu1").toggleClass("active");
 			})
 		});
-		$(document).ready(function(){
-			$(".active2").click(function(){
-				$(this).toggleClass("active");
-				$(".dropdown-menu2").toggleClass("active");
-			})
-		});
 
 		 // ẩn hiện overlay panel
 		 function on() {
@@ -98,19 +92,9 @@
 			</div>
 			<div class="user-settings">
 
-				<button class="user-settings-btn1 btn1 active2" aria-label="Create">
+				<button class="user-settings-btn1 btn1" aria-label="Create" onclick="on()">
 					<i class="fas fa-plus" aria-hidden="true"></i>
 				</button>
-
-				<!-- menu doc -->
-				<div class="dropdown-menu2 rounded">
-					<ul>
-						<li>Tạo mới</li>
-						<li><button class="btn" onclick="on()">bảng cá nhân</button></li>
-						<li><button class="btn" onclick="on()">bảng nhóm</button></li>
-
-					</ul>
-				</div>
 
 
 				<button class="user-settings-btn1 btn1" aria-label="Information">
@@ -147,10 +131,10 @@
 			<div style="width: 360px; margin: 30px auto;">
 				<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}">
 
-					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
+					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">
 						<input type="text" th:field="*{NAME}" name="" class="rounded" placeholder="nhập tiêu đề bảng">
 						<button class="btn btn-success btn-sm " style="margin-top: 53px;" type="submit">Tạo Bảng</button>
-						<button class="btn btn-danger btn-sm" style="margin-top: 53px;" onclick="off()"><i class="fas fa-times"></i></button>
+						<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
 					</div>
 					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
 						<ul>

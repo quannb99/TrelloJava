@@ -25,12 +25,6 @@
 				$(".dropdown-menu1").toggleClass("active");
 			})
 		});
-		$(document).ready(function(){
-			$(".active2").click(function(){
-				$(this).toggleClass("active");
-				$(".dropdown-menu2").toggleClass("active");
-			})
-		});
 		// ẩn hiện overlay panel
 		function on() {
 			document.getElementById("overlay").style.display = "block";
@@ -45,7 +39,7 @@
 		}
 
 		function vang() {
-			document.getElementById("color_background").style.background = "#ecec42";
+			document.getElementById("color_background").style.background = "#f1c40f";
 		}
 		function xanhla() {
 			document.getElementById("color_background").style.background = "#59a759";
@@ -75,17 +69,9 @@
 	</div>
 	<div class="user-settings">
 
-		<button class="user-settings-btn1 btn1 active2" aria-label="Create">
+		<button class="user-settings-btn1 btn1" aria-label="Create" onclick="on()">
 			<i class="fas fa-plus" aria-hidden="true"></i>
 		</button>
-		<!-- menu doc 2 -->
-		<div class="dropdown-menu2 rounded">
-			<ul>
-				<li>Tạo mới</li>
-				<li><button class="btn" onclick="on()">bảng cá nhân</button></li>
-				<li><button class="btn" onclick="on()">bảng nhóm</button></li>
-			</ul>
-		</div>
 
 
 		<button class="user-settings-btn1 btn1" aria-label="Information">
@@ -107,7 +93,6 @@
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#" th:utext="${#request.userPrincipal.name}"> </a></li>
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#">Hồ sơ tài khoản </a></li>
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="/logout">Đăng xuất</a></li>
-<!--				<li th:if="${#request.getUserPrincipal() != null}" th:text="${username}"></li>-->
 			</ul>
 		</div>
 
@@ -134,13 +119,6 @@
 				<a href="#" class="list-group-item"><i class="fas fa-book logo-icon"></i></i>Mẫu</a>
 				<a href="/index" class="list-group-item"><i class="fas fa-house-damage logo-icon"></i>Trang chủ</a>
 			</div>
-			<!-- <h6>Các nhóm </h6>
-            <ul class="list-group">
-                <a href=""><li class="list-group-item"><i class="fas fa-user-friends logo-icon"></i>nhóm 1</li></a>
-                <a href=""><li class="list-group-item"><i class="fas fa-user-friends logo-icon"></i>nhóm 2</li></a>
-
-            </ul> -->
-
 
 		</div>
 		<!-- /.col-lg-3 -->
@@ -183,20 +161,18 @@
 				<div class="col-lg-3 col-md-6 mb-4" th:each="board : ${boards}">
 					<div class=" bg-info rounded" th:style="'background-color: '+ ${board.BGR} + '!important;'">
 						<a href="#" style="min-height: 100px;display:block ">
+							
 							<p style="color: white; padding-left: 5px;" th:text="${board.NAME}">  </p>
 						</a>
 
 					</div>
 				</div>
-
+				
 				<div class="col-lg-3 col-md-6 mb-4">
-					<div class=" bg-info rounded">
-						<button class="btn-block" style="min-height: 100px;" onclick="on()">
-							<i class="fas fa-plus-circle" style="font-size: 30px;"></i>
-						</button>
-
-					</div>
-				</div>
+						<div class=" bg-light rounded border border-primary" style="min-height: 100px;cursor: pointer;margin-top: 15px;" onclick="on()">
+								<i class="fas fa-plus-circle" style="font-size: 30px;margin: 34px 76px;"></i>
+						</div>
+					</div>	
 
 			</div>
 
@@ -215,28 +191,26 @@
 <!-- OverLay -->
 <div id="overlay">
 	<div style="width: 360px; margin: 30px auto;">
-		<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}">
+		<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}" >
 
-			<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;" id="color_background">
+			<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;position: relative;" id="color_background">
 				<input type="text" th:field="*{NAME}" name="" class="rounded" placeholder="nhập tiêu đề bảng">
 				<button class="btn btn-success btn-sm " style="margin-top: 53px;" type="submit">Tạo Bảng</button>
-				<button class="btn btn-danger btn-sm" style="margin-top: 53px;" onclick="off()"><i class="fas fa-times"></i></button>
+				<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
 			</div>
 			<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
 				<ul>
 					<li style="font-weight: 500;">Chọn phông nền bảng </li>
-					<li><input type="radio" th:field="*{BGR}" name="bc" value="blue" onclick="xanhduong()" />Xanh Dương</li>
-					<li><input type="radio" th:field="*{BGR}" name="bc" value="yellow" onclick="vang()" />Vàng</li>
-					<li><input type="radio" th:field="*{BGR}" name="bc" value="green" onclick="xanhla()" />Xanh lá</li>
-					<input type="text" th:field="*{USERNAME}" th:value="${#request.getUserPrincipal().getName()}" value="test">
-					<input type="hidden" th:field="*{STAR}" value="1" th:value="1">
+					<li><input type="radio" th:field="*{BGR}" name="bc" value="#17a2b8" onclick="xanhduong()" />Xanh Dương</li>
+					<li><input type="radio" th:field="*{BGR}" name="bc" value="#f1c40f" onclick="vang()" />Vàng</li>
+					<li><input type="radio" th:field="*{BGR}" name="bc" value="#59a759" onclick="xanhla()" />Xanh lá</li>
 				</ul>
-
 			</div>
+			<input type="hidden" th:value="${#request.getUserPrincipal().getName()}" name="USERNAME" id="USERNAME" >
+
 		</form>
 	</div>
 </div>
-
 
 </body>
 </html>

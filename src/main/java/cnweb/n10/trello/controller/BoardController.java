@@ -38,10 +38,10 @@ public class BoardController {
         model.addAttribute("boards", boards);
         return "index";
     }
-    @PostMapping("index")
+    @PostMapping("/index")
     public String addBoard(@ModelAttribute Board board){
         return Optional.ofNullable(boardService.add(board))
-                .map(t -> "index")
-                .orElse("index");
+                .map(t -> "redirect:/index")
+                .orElse("redirect:/index");
     }
 }
