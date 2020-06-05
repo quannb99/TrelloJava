@@ -4,12 +4,12 @@ import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
-public class BoardValidate {
+public class TListValidate {
 
-    public boolean isValid(Board board) {
-        return Optional.ofNullable(board)
+    public boolean isValid(TList list) {
+        return Optional.ofNullable(list)
                 .filter(t -> !StringUtils.isEmpty(t.getNAME()))
-                .filter(t -> !StringUtils.isEmpty(t.getBGR()))
+                .filter(t -> !StringUtils.isEmpty(t.getBID()))
                 .filter(t -> !StringUtils.isEmpty(t.getUSERNAME()))
                 .isPresent();
     }

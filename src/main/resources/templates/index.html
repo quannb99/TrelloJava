@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Index</title>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/menu_doc.css">
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic" rel="stylesheet" />
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic"
+		  rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<!-- link bootstrap -->
 	<link href="css/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,8 +22,8 @@
 	<script type="text/javascript">
 
 		// menu dọc khi click vào button trên thanh header
-		$(document).ready(function(){
-			$(".active1").click(function(){
+		$(document).ready(function () {
+			$(".active1").click(function () {
 				$(this).toggleClass("active");
 				$(".dropdown-menu1").toggleClass("active");
 			})
@@ -47,6 +50,7 @@
 
 	</script>
 </head>
+
 <body style="background: #fafbfc;">
 
 <!--  nếu ông cắt header thì xóa đoạn header này đi nhé , t đánh dấu rồi  -->
@@ -55,16 +59,18 @@
 
 	<div class="boards-menu">
 
-		<button class="boards-btn1 btn1"><i class="fab fa-trello boards-btn1-ico" style="margin-right: 2px;"></i>Bảng</button>
+		<button class="boards-btn1 btn1"><i class="fab fa-trello boards-btn1-ico"
+											style="margin-right: 2px;"></i>Bảng</button>
 
 		<div class="board-search">
-			<input type="text"  name="search" id="search" class="board-search-input" aria-label="Board Search">
+			<input type="text" name="search" id="search" class="board-search-input" aria-label="Board Search">
 			<i class="fas fa-search search-icon" aria-hidden="true"></i>
 		</div>
 	</div>
 	<div class="logo">
 
-		<h1 style="font-size: 22px; font-weight: 700;margin-bottom: 0px;"><i class="fab fa-trello logo-icon" aria-hidden="true"></i>Trello</h1>
+		<h1 style="font-size: 22px; font-weight: 700;margin-bottom: 0px;"><i class="fab fa-trello logo-icon"
+																			 aria-hidden="true"></i>Trello</h1>
 
 	</div>
 	<div class="user-settings">
@@ -159,20 +165,19 @@
 			<div class="row">
 
 				<div class="col-lg-3 col-md-6 mb-4" th:each="board : ${boards}">
-					<div class=" bg-info rounded" th:style="'background-color: '+ ${board.BGR} + '!important;'">
-						<a href="#" style="min-height: 100px;display:block ">
-							
+<!--					<a th:href="@{/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>-->
+					<a th:href="@{/board?BID={BID}(BID=${board.ID})}" style="min-height: 100px; display: block; text-decoration: none;">
+					<div class=" bg-info rounded"  th:style="'background-color: '+ ${board.BGR} + '!important;' + 'height:100px;'">
 							<p style="color: white; padding-left: 5px;" th:text="${board.NAME}">  </p>
-						</a>
+					</div>
+					</a>
+				</div>
 
+				<div class="col-lg-3 col-md-6 mb-4">
+					<div class=" bg-light rounded border border-primary" style="min-height: 100px;cursor: pointer;" onclick="on()">
+						<i class="fas fa-plus-circle" style="font-size: 30px;margin: 34px 76px;"></i>
 					</div>
 				</div>
-				
-				<div class="col-lg-3 col-md-6 mb-4">
-						<div class=" bg-light rounded border border-primary" style="min-height: 100px;cursor: pointer;margin-top: 15px;" onclick="on()">
-								<i class="fas fa-plus-circle" style="font-size: 30px;margin: 34px 76px;"></i>
-						</div>
-					</div>	
 
 			</div>
 

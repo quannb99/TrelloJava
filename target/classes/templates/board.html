@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>Board</title>	
+	<title>Board</title>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/board.css">
 	<link rel="stylesheet" href="css/menu_doc.css">
@@ -27,8 +27,8 @@
 			})
 		});
 		// ẩn hiện thẻ trong danh sách thêm card	
-		 //mảng arr chứa 100 class khác nhằm cho việc ẩn hiện phần tử hidecardI,showcardI 	(đủ dùng vì bảng ko đến 100 list)
-		 //ko cần đụng gì ở đây
+		//mảng arr chứa 100 class khác nhằm cho việc ẩn hiện phần tử hidecardI,showcardI 	(đủ dùng vì bảng ko đến 100 list)
+		//ko cần đụng gì ở đây
 		var arr = new Array (100);
 		for(var i =0;i<100;i++){
 			arr[i]=i;
@@ -42,7 +42,7 @@
 
 				});
 			});
-			
+
 		});
 		$(document).ready(function(){
 			$.each(arr,function(index){
@@ -52,256 +52,173 @@
 
 				});
 			});
-			
+
 		});
-		
-		 //ẩn hiện thẻ trong danh sách thêm list
-		 function on2() {
-		 	document.getElementById("hidelist").style.display = "none";
-		 	document.getElementById("showlist").style.display = "block";
-		 }
 
-		 function off2() {
-		 	document.getElementById("hidelist").style.display = "block";
-		 	document.getElementById("showlist").style.display = "none";
-		 }
-		 // ẩn hiện overlay panel nội dung thẻ
-		 function on1() {
-		 	document.getElementById("overlay1").style.display = "block";
-		 }
-
-		 function off1() {
-		 	document.getElementById("overlay1").style.display = "none";
-		 }
-		 // ẩn hiện overlay panel tạo bảng
-		 function on() {
-		 	document.getElementById("overlay").style.display = "block";
-		 }
-
-		 function off() {
-		 	document.getElementById("overlay").style.display = "none";
-		 }
-		  //chuyển màu cho backgroud
-		  function xanhduong() {
-		  	document.getElementById("color_background").style.background = "#17a2b8";
-		  }
-
-		  function vang() {
-		  	document.getElementById("color_background").style.background = "#ecec42";
-		  }
-		  function xanhla() {
-		  	document.getElementById("color_background").style.background = "#59a759";
-		  }
-		</script>
-	</head>
-	<style type="text/css">
-		.hide{
-			display: none;
+		//ẩn hiện thẻ trong danh sách thêm list
+		function on2() {
+			document.getElementById("hidelist").style.display = "none";
+			document.getElementById("showlist").style.display = "block";
 		}
-	</style>
 
-	<body style="    background-color: #0079bf;">
-		<!-- header -->
-		<header>
-			<div th:replace="/header :: header"/>
-		</header>
-		<!-- End of header -->
+		function off2() {
+			document.getElementById("hidelist").style.display = "block";
+			document.getElementById("showlist").style.display = "none";
+		}
+		// ẩn hiện overlay panel nội dung thẻ
+		function on1() {
+			document.getElementById("overlay1").style.display = "block";
+		}
 
+		function off1() {
+			document.getElementById("overlay1").style.display = "none";
+		}
+		// ẩn hiện overlay panel tạo bảng
+		function on() {
+			document.getElementById("overlay").style.display = "block";
+		}
 
-		<!-- Board info bar -->
-		<section class="board-info-bar">
+		function off() {
+			document.getElementById("overlay").style.display = "none";
+		}
+		//chuyển màu cho backgroud
+		function xanhduong() {
+			document.getElementById("color_background").style.background = "#17a2b8";
+		}
 
-			<div class="board-controls">
+		function vang() {
+			document.getElementById("color_background").style.background = "#ecec42";
+		}
+		function xanhla() {
+			document.getElementById("color_background").style.background = "#59a759";
+		}
+	</script>
+</head>
+<style type="text/css">
+	.hide{
+		display: none;
+	}
+</style>
 
-				<button class="board-title btn1">
-					<h2>Group 10-CN web </h2>
-				</button>
-
-				<button class="star-btn1 btn1" aria-label="Star Board">
-					<i class="far fa-star" aria-hidden="true"></i>
-				</button>
-
-				<button class="personal-btn1 btn1">Personal</button>
-
-				<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>
-
-			</div>
-
-			<button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button>
-
-		</section>
-		<!-- End of board info bar -->
-
-		<!-- Lists container -->
-		<section class="lists-container" >
-			
-			<!-- thẻ thứ 1 -->
-			<div class="list" th:each="board : ${boards}">
-
-				<h3 class="list-title" th:text="${board.NAME}"></h3>
-
-				<ul class="list-items">
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-
-				</ul>
-
-				 <!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
-
-				<div    class="hide showcard1"> <!-- showcard+i ở đây, là showcard+1  -->
-					<form>
-						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
-						<div style="display: flex;" >
-							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
-							<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
-							<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
-						</div>
-					</form>
-
-				</div>
-				<button class="add-card-btn1 btn1 hidecard1" ><!--hidecard+i ở đây, là hidecard+1  -->
-				Add a card</button>
-			</div>
-			<!-- hết thẻ thứ 1 -->
-			<!-- thẻ thứ 2 -->
-			<div class="list" th:each="board : ${boards}">
-
-				<h3 class="list-title" th:text="${board.NAME}"></h3>
-
-				<ul class="list-items">
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-
-				</ul>
-
-					 <!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
-				<div    class="hide showcard2">  <!-- showcard+i ở đây, là showcard+2  -->
-					<form>
-						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
-						<div style="display: flex;" >
-							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
-							<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
-							<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
-						</div>
-					</form>
-
-				</div>
-				<button class="add-card-btn1 btn1 hidecard2" > <!--hidecard+i ở đây, là hidecard+2  -->
-				Add a card</button>
-			</div>
-			<!-- hết thẻ thứ 2 -->
-			<!-- thẻ thứ 3 -->
-			<div class="list" th:each="board : ${boards}">
-
-				<h3 class="list-title" th:text="${board.NAME}"></h3>
-
-				<ul class="list-items">
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-					<li onclick="on1()">Complete mock-up for client website</li>
-
-				</ul>
-
-				<!-- id = an : nhấn vào button x thì sẽ hiện , id = hien : nhấn vào button Add a card ... thì sẽ ẩn -->
-				<div    class="hide showcard3">
-					<form>
-						<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
-						<div style="display: flex;" >
-							<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
-							<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
-							<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
-						</div>
-					</form>
-
-				</div>
-				<button class="add-card-btn1 btn1 hidecard3" >Add a card</button>
-			</div>
-			<!-- hết thẻ thứ 3 -->
-
-			<!-- thẻ thứ 4 -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- ................. -->
-			<!-- hết thứ 4 -->
-
-			<!-- thêm list	 -->
-			<button class="add-list-btn1 btn1" id="hidelist" onclick="on2()">Add a list</button>
-			<div class="list" style="display: none;" id="showlist">
-				<!-- form nhập liệu thêm list ở đây -->
-				<form>
-					<input type="text" name="" placeholder="mời nhập tiêu đề " class="form-control">
-					<div style="display: flex;">
-						<button type="submit" class="btn btn-success btn-sm">Thêm danh sách</button>
-						<!-- <button class="btn btn-danger btn-sm" value="hide2"><i class="fas fa-times"></i></button> -->
-						<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" onclick="off2()"></i>
-					</div>
-				</form>
-
-			</div>
-			
+<body style="    background-color: #0079bf;">
+<!-- header -->
+<header>
+	<div th:replace="/header :: header"/>
+</header>
+<!-- End of header -->
 
 
+<!-- Board info bar -->
+<section class="board-info-bar">
 
-		</section>
-		<!-- End of lists container -->
+	<div class="board-controls">
 
-		<!-- OverLay 1 -->
-		<div id="overlay1">
-			<form class="form-group">
-				<h3>Nội Dung Thẻ </h3>
-				<textarea id="comment"></textarea>
-				<div class="row" style="margin-left: 67%" >
-					<button class="btn btn-success btn-sm col-lg-1" >Lưu </button>
-					<i class="fas fa-window-close text-danger" style="font-size: 31px;" onclick="off1()"></i></button>
+		<button class="board-title btn1">
+			<h2>Group 10-CN web </h2>
+		</button>
+
+		<button class="star-btn1 btn1" aria-label="Star Board">
+			<i class="far fa-star" aria-hidden="true"></i>
+		</button>
+
+		<button class="personal-btn1 btn1">Personal</button>
+
+		<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>
+
+	</div>
+
+	<button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button>
+
+</section>
+<!-- End of board info bar -->
+
+<!-- Lists container -->
+<section class="lists-container" >
+
+	<!-- thẻ thứ 1 -->
+	<div class="list" th:each="rlist : ${ResList}">
+
+		<h3 class="list-title" th:text="${rlist.NAME}"></h3>
+
+		<ul class="list-items">
+			<li onclick="on1()">Complete mock-up for client website</li>
+			<li onclick="on1()">Complete mock-up for client website</li>
+			<li onclick="on1()">Complete mock-up for client website</li>
+		</ul>
+
+		<!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
+
+		<div    class="hide showcard1"> <!-- showcard+i ở đây, là showcard+1  -->
+			<form>
+				<input type="text" name="" placeholder="mời nhập tiêu đề" class="form-control">
+				<div style="display: flex;" >
+					<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
+					<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+					<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
 				</div>
 			</form>
 
 		</div>
-
-		<!-- OverLay 2 -->
-		<div id="overlay">
-			<div style="width: 360px; margin: 30px auto;">
-				<form class="form-group clearfix ">
-
-					<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">
-						<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
-						<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
-						<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
-					</div>
-					<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
-						<ul>
-							<li style="font-weight: 500;">Chọn phông nền bảng </li>
-							<li><input type="radio" name="1" value="" onclick="xanhduong()" />Xanh Dương</li>
-							<li><input type="radio" name="1" value="" onclick="vang()" />Vàng</li>
-							<li><input type="radio" name="1" value="" onclick="xanhla()" />Xanh lá</li>
-						</ul>
+		<button class="add-card-btn1 btn1 hidecard1" ><!--hidecard+i ở đây, là hidecard+1  -->
+			Add a card</button>
+	</div>
+	<!-- hết thẻ thứ 1 -->
 
 
-					</div>
-				</form>		
+	<!-- thêm list	 -->
+	<button class="add-list-btn1 btn1" id="hidelist" onclick="on2()">Add a list</button>
+	<div class="list" style="display: none;" id="showlist">
+		<!-- form nhập liệu thêm list ở đây -->
+		<form th:action="@{/addList}" method="post" th:object="${TList}">
+			<input type="text" th:field="*{NAME}" placeholder="Nhập tiêu đề cho thẻ này..." class="form-control">
+			<input type="hidden" name="USERNAME" id="USERNAME" th:value="${#request.userPrincipal.getName()}">
+			<input type="hidden" name="BID" id="BID" th:value="${param.BID}">
+			<div style="display: flex;" >
+				<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
+				<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+				<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;"  onclick="off2()"></i>
 			</div>
+		</form>
+
+	</div>
+</section>
+<!-- End of lists container -->
+
+<!-- OverLay 1 -->
+<div id="overlay1">
+	<form class="form-group">
+		<h3>Nội Dung Thẻ </h3>
+		<textarea id="comment"></textarea>
+		<div class="row" style="margin-left: 67%" >
+			<button class="btn btn-success btn-sm col-lg-1" >Lưu </button>
+			<i class="fas fa-window-close text-danger" style="font-size: 31px;" onclick="off1()"></i></button>
 		</div>
-	</body>
-	</html>
+	</form>
+
+</div>
+
+<!-- OverLay 2 -->
+<div id="overlay">
+	<div style="width: 360px; margin: 30px auto;">
+		<form class="form-group clearfix ">
+
+			<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">
+				<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
+				<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
+				<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
+			</div>
+			<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
+				<ul>
+					<li style="font-weight: 500;">Chọn phông nền bảng </li>
+					<li><input type="radio" name="1" value="" onclick="xanhduong()" />Xanh Dương</li>
+					<li><input type="radio" name="1" value="" onclick="vang()" />Vàng</li>
+					<li><input type="radio" name="1" value="" onclick="xanhla()" />Xanh lá</li>
+				</ul>
+
+
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>
