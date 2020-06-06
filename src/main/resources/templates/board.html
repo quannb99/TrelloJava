@@ -140,19 +140,18 @@
 
 		<h3 class="list-title" th:text="${rlist.NAME}"></h3>
 
-		<ul class="list-items">
-			<li onclick="on1()" th:each="task : ${tasksOfList}" th:text="${task.NAME}"></li>
-			<li onclick="on1()">Complete mock-up for client website</li>
+		<ul class="list-items" th:each="tasklist : ${taskList}" style="padding: 0 8px; margin-bottom: 0">
+			<li th:each="i : ${Li}" th:if="${(i < tasklist.size()) && (tasklist.get(i).getLID() == rlist.getID())}" th:utext="${tasklist.get(i).NAME}"   onclick="on1()" style="margin: 5px; line-height: 20px"></li>
 		</ul>
 
 		<!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
 
-		<div  class="hide showcard1"> <!-- showcard+i ở đây, là showcard+1  -->
+		<div  th:class="'hide showcard'+${rlist.getID()}"> <!-- showcard+i ở đây, là showcard+1  -->
 			<form th:action="@{/addTask}" th:object="${Task}" method="post">
 				<input type="text" th:field="*{NAME}" placeholder="Nhập tiêu đề cho thẻ này..." class="form-control">
-				<input type="text" name="BID" id="BID2" th:value="${param.BID}">
-				<input type="text" name="USERNAME" id="USERNAME2" th:value="${#request.userPrincipal.getName()}">
-				<input type="text" name="LID" id="LID" th:value="1">
+				<input type="hidden" name="BID" id="BID2" th:value="${param.BID}">
+				<input type="hidden" name="USERNAME" id="USERNAME2" th:value="${#request.userPrincipal.getName()}">
+				<input type="hidden" name="LID" id="LID" th:value="${rlist.getID()}">
 				<div style="display: flex;" >
 					<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
 					<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
@@ -161,7 +160,7 @@
 			</form>
 
 		</div>
-		<button class="add-card-btn1 btn1 hidecard1" ><!--hidecard+i ở đây, là hidecard+1  -->
+		<button th:class="'add-card-btn1 btn1 hidecard'+${rlist.getID()}" style="margin-top: 15px"><!--hidecard+i ở đây, là hidecard+1  -->
 			Add a card</button>
 	</div>
 	<!-- hết thẻ thứ 1 -->
@@ -199,28 +198,5 @@
 
 </div>
 
-<!-- OverLay 2 -->
-<div id="overlay">
-	<div style="width: 360px; margin: 30px auto;">
-		<form class="form-group clearfix ">
-
-			<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8; position: relative;" id="color_background">
-				<input type="text" name="" class="rounded" placeholder="nhập tiêu đề bảng">
-				<button class="btn btn-success btn-sm " style="margin-top: 53px;">Tạo Bảng</button>
-				<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
-			</div>
-			<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
-				<ul>
-					<li style="font-weight: 500;">Chọn phông nền bảng </li>
-					<li><input type="radio" name="1" value="" onclick="xanhduong()" />Xanh Dương</li>
-					<li><input type="radio" name="1" value="" onclick="vang()" />Vàng</li>
-					<li><input type="radio" name="1" value="" onclick="xanhla()" />Xanh lá</li>
-				</ul>
-
-
-			</div>
-		</form>
-	</div>
-</div>
 </body>
 </html>

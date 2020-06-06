@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,16 +39,21 @@ public class OtherMapping {
         String USERNAME = principal.getName();
         List<TList> ResList = tListRepository.findAllByUSERNAMEAndBID(USERNAME, BID);
         model.addAttribute("ResList", ResList);
-        Integer i = 1;
+        Integer c = 0;
+        List<List<Task>> taskList = new ArrayList<>();
+//        List<Integer> Li = new ArrayList<>();
+        int Li[] = new int[50];
+        for(int i = 0; i < 50; i++){
+            Li[i] = i;
+        }
+        model.addAttribute("Li", Li);
         for (TList l : ResList) {
             Integer LID = l.getID();
-            System.out.println("LID = " + LID);
             List<Task> tasks = taskRepository.findAllByUSERNAMEAndBIDAndLID(USERNAME, BID, LID);
-            model.addAttribute("tasksOfList", tasks);
-            i++;
+            taskList.add(tasks);
+            model.addAttribute("taskList",taskList);
         }
-        List<Task> tasks = taskRepository.findAllByUSERNAMEAndBIDAndLID(USERNAME, BID, 1);
-        model.addAttribute("tasksOfList", tasks);
+
         return "board";
     }
 
