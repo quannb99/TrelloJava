@@ -54,7 +54,26 @@
 			});
 
 		});
+		//ẩn hiện thẻ trong danh sách thêm list
+		function on4() {
+			document.getElementById("hide_description").style.display = "none";
+			document.getElementById("show_description").style.display = "block";
+		}
 
+		function off4() {
+			document.getElementById("hide_description").style.display = "block";
+			document.getElementById("show_description").style.display = "none";
+		}
+		//ẩn hiện thẻ trong danh sách thêm checklist công việc
+		function on3() {
+			document.getElementById("hidechecklist").style.display = "none";
+			document.getElementById("showchecklist").style.display = "block";
+		}
+
+		function off3() {
+			document.getElementById("hidechecklist").style.display = "block";
+			document.getElementById("showchecklist").style.display = "none";
+		}
 		//ẩn hiện thẻ trong danh sách thêm list
 		function on2() {
 			document.getElementById("hidelist").style.display = "none";
@@ -101,92 +120,92 @@
 </style>
 
 <body style="    background-color: #0079bf;">
-<!-- header -->
-<header>
-	<div th:replace="/header :: header"/>
-</header>
-<!-- End of header -->
+	<!-- header -->
+	<header>
+		<div th:replace="/header :: header"/>
+	</header>
+	<!-- End of header -->
 
 
-<!-- Board info bar -->
-<section class="board-info-bar">
+	<!-- Board info bar -->
+	<section class="board-info-bar">
 
-	<div class="board-controls">
+		<div class="board-controls">
 
-		<button class="board-title btn1">
-			<h2>Group 10-CN web </h2>
-		</button>
+			<button class="board-title btn1">
+				<h2>Group 10-CN web </h2>
+			</button>
 
-		<button class="star-btn1 btn1" aria-label="Star Board">
-			<i class="far fa-star" aria-hidden="true"></i>
-		</button>
+			<button class="star-btn1 btn1" aria-label="Star Board">
+				<i class="far fa-star" aria-hidden="true"></i>
+			</button>
 
-		<button class="personal-btn1 btn1">Personal</button>
+			<button class="personal-btn1 btn1">Personal</button>
 
-		<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>
+			<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>
 
-	</div>
+		</div>
 
-	<button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button>
+		<!-- <button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button> -->
 
-</section>
-<!-- End of board info bar -->
+	</section>
+	<!-- End of board info bar -->
 
-<!-- Lists container -->
-<section class="lists-container" >
+	<!-- Lists container -->
+	<section class="lists-container" >
 
-	<!-- thẻ thứ 1 -->
-	<div class="list" th:each="rlist : ${ResList}">
+		<!-- thẻ thứ 1 -->
+		<div class="list" th:each="rlist : ${ResList}">
 
-		<h3 class="list-title" th:text="${rlist.NAME}"></h3>
+			<h3 class="list-title" th:text="${rlist.NAME}"></h3>
 
-		<ul class="list-items" th:each="tasklist : ${taskList}" style="padding: 0 8px; margin-bottom: 0">
-			<li th:each="i : ${Li}" th:if="${(i < tasklist.size()) && (tasklist.get(i).getLID() == rlist.getID())}" th:utext="${tasklist.get(i).NAME}"   onclick="on1()" style="margin: 5px; line-height: 20px"></li>
-		</ul>
+			<ul class="list-items" th:each="tasklist : ${taskList}" style="padding: 0 8px; margin-bottom: 0">
+				<li th:each="i : ${Li}" th:if="${(i < tasklist.size()) && (tasklist.get(i).getLID() == rlist.getID())}" th:utext="${tasklist.get(i).NAME}"   onclick="on1()" style="margin: 5px; line-height: 20px"></li>
+			</ul>
 
-		<!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
+			<!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
 
-		<div  th:class="'hide showcard'+${rlist.getID()}"> <!-- showcard+i ở đây, là showcard+1  -->
-			<form th:action="@{/addTask}" th:object="${Task}" method="post">
+			<div  th:class="'hide showcard'+${rlist.getID()}"> <!-- showcard+i ở đây, là showcard+1  -->
+				<form th:action="@{/addTask}" th:object="${Task}" method="post">
+					<input type="text" th:field="*{NAME}" placeholder="Nhập tiêu đề cho thẻ này..." class="form-control">
+					<input type="hidden" name="BID" id="BID2" th:value="${param.BID}">
+					<input type="hidden" name="USERNAME" id="USERNAME2" th:value="${#request.userPrincipal.getName()}">
+					<input type="hidden" name="LID" id="LID" th:value="${rlist.getID()}">
+					<div style="display: flex;" >
+						<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
+						<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+						<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
+					</div>
+				</form>
+
+			</div>
+			<button th:class="'add-card-btn1 btn1 hidecard'+${rlist.getID()}" style="margin-top: 15px"><!--hidecard+i ở đây, là hidecard+1  -->
+			Add a card</button>
+		</div>
+		<!-- hết thẻ thứ 1 -->
+
+
+		<!-- thêm list	 -->
+		<button class="add-list-btn1 btn1" id="hidelist" onclick="on2()">Add a list</button>
+		<div class="list" style="display: none;" id="showlist">
+			<!-- form nhập liệu thêm list ở đây -->
+			<form th:action="@{/addList}" method="post" th:object="${TList}">
 				<input type="text" th:field="*{NAME}" placeholder="Nhập tiêu đề cho thẻ này..." class="form-control">
-				<input type="hidden" name="BID" id="BID2" th:value="${param.BID}">
-				<input type="hidden" name="USERNAME" id="USERNAME2" th:value="${#request.userPrincipal.getName()}">
-				<input type="hidden" name="LID" id="LID" th:value="${rlist.getID()}">
+				<input type="hidden" name="USERNAME" id="USERNAME" th:value="${#request.userPrincipal.getName()}">
+				<input type="hidden" name="BID" id="BID" th:value="${param.BID}">
 				<div style="display: flex;" >
 					<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
 					<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
-					<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
+					<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;"  onclick="off2()"></i>
 				</div>
 			</form>
 
 		</div>
-		<button th:class="'add-card-btn1 btn1 hidecard'+${rlist.getID()}" style="margin-top: 15px"><!--hidecard+i ở đây, là hidecard+1  -->
-			Add a card</button>
-	</div>
-	<!-- hết thẻ thứ 1 -->
+	</section>
+	<!-- End of lists container -->
 
-
-	<!-- thêm list	 -->
-	<button class="add-list-btn1 btn1" id="hidelist" onclick="on2()">Add a list</button>
-	<div class="list" style="display: none;" id="showlist">
-		<!-- form nhập liệu thêm list ở đây -->
-		<form th:action="@{/addList}" method="post" th:object="${TList}">
-			<input type="text" th:field="*{NAME}" placeholder="Nhập tiêu đề cho thẻ này..." class="form-control">
-			<input type="hidden" name="USERNAME" id="USERNAME" th:value="${#request.userPrincipal.getName()}">
-			<input type="hidden" name="BID" id="BID" th:value="${param.BID}">
-			<div style="display: flex;" >
-				<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
-				<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
-				<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;"  onclick="off2()"></i>
-			</div>
-		</form>
-
-	</div>
-</section>
-<!-- End of lists container -->
-
-<!-- OverLay 1 -->
-<div id="overlay1">
+	<!-- OverLay 1 -->
+<!-- <div id="overlay1">
 	<form class="form-group">
 		<h3>Nội Dung Thẻ </h3>
 		<textarea id="comment"></textarea>
@@ -196,6 +215,54 @@
 		</div>
 	</form>
 
+</div> -->
+<div id="overlay1">
+	<div class="btn-light rounded " style="width: 500px; height: 550px; margin: 30px  auto; margin-bottom: 0px;">
+		<div class="ml-4 mb-4 pt-4">
+			<i class="fas fa-id-card"></i> 
+			<input type="text" name="" value="tên thẻ 1 " style="border: none;">
+			<p style="font-size: 13px;">trong danh sách <span style="font-weight: 700">Danh sách 1</span></p>
+		</div>
+		<div class="ml-4 mb-4">
+			<p><i class="fas fa-bars"></i><span style="font-weight: 700"> Mô tả</span></p>
+			<p class="text-info" id="hide_description" onclick="on4()">nội dung mô tả ở đây(ông đổ nội dung từ database ra thẻ p này luôn !)</p>
+			<!-- ở trong trello thì nó đổ data nội dung mô tả ra thẻ p , khi click thẻ p sẽ ra textarea để chỉnh sửa nội dung mô tả này -->
+			<div style="display: none;" id="show_description">
+				<form>
+				<textarea style=" width: 450px; height: 100px;	border: 1px solid;"></textarea>
+				<button class="btn btn-success  btn-sm" >Chỉnh sửa</button>
+				<i class="fas fa-window-close text-danger" style="font-size: 23px; cursor: pointer;"  onclick="off4()"></i>			
+				</form>
+				
+			</div>
+		</div>
+		<div class="ml-4 mb-4">
+			<p><i class="far fa-calendar-check"></i><span style="font-weight: 700"> Việc cần làm</span></p>
+			<input type="checkbox" name="vehicle1" value="Bike">
+			<label for="vehicle1"> I have a bike</label><br>
+			<input type="checkbox" name="vehicle1" value="Car">
+			<label for="vehicle2"> I have a car</label><br>
+			<input type="checkbox" name="vehicle3" value="Boat">
+			<label for="vehicle3"> I have a boat</label>
+			<p class="text-info" id="hidechecklist" onclick="on3()">Thêm 1 công việc</p>
+			<div class="list" style="display: none;" id="showchecklist">
+				<!-- form nhập liệu thêm checklist ở đây -->
+				<form th:action="@{/addList}" method="post" th:object="${TList}">
+					<input type="text" placeholder="Nhập tiêu đề cho công việc này..." style="width: 450px;">
+					<div style="display: flex; margin-top: 5px; " >
+						<button class="btn btn-success  btn-sm" >Thêm</button>
+						<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+						<i class="fas fa-window-close text-danger" style="margin-left: 5px; font-size: 23px; cursor: pointer;"  onclick="off3()"></i>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-left: 66%" >
+		<!-- <button class="btn btn-success btn-sm col-lg-1" >Lưu </button> -->
+		<i class="fas fa-window-close text-danger" style="font-size: 31px;" onclick="off1()"></i></button>
+	</div>
 </div>
 
 </body>
