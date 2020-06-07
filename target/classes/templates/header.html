@@ -34,17 +34,7 @@
 		 function off() {
 		 	document.getElementById("overlay").style.display = "none";
 		 }
-		 //chuyển màu cho backgroud
-		 function xanhduong() {
-		 	document.getElementById("color_background").style.background = "#17a2b8";
-		 }
 
-		 function vang() {
-		 	document.getElementById("color_background").style.background = "#ecec42";
-		 }
-		 function xanhla() {
-		 	document.getElementById("color_background").style.background = "#59a759";
-		 }
 		  // search ajax = file data.json
 		 $(document).ready(function(){
 		 	$.ajaxSetup({ cache: false });
@@ -77,35 +67,37 @@
 
 			<div class="boards-menu">
 
-				<button class="boards-btn1 btn1"><i class="fab fa-trello boards-btn1-ico" style="margin-right: 2px;"></i>Bảng</button>
+				<button class="boards-btn1 btn1"><a style="text-decoration: none;" href="/index"><i class="fab fa-trello boards-btn1-ico" style="margin-right: 2px;"></i></a>Bảng</button>
 
 				<div class="board-search">
-					<input type="text"  name="search" id="search" class="board-search-input" aria-label="Board Search">
-					<i class="fas fa-search search-icon" aria-hidden="true"></i>
+					<form style="height: 30px;" method="post" th:action="@{/searchBoard}">
+						<input type="text" name="pattern" id="pattern" class="board-search-input" aria-label="Board Search">
+						<button style="border: 0;" type="submit"><i class="fas fa-search search-icon" aria-hidden="true"></i></button>
+					</form>
 				</div>
 
 			</div>
-			<div class="logo">
+			<div class="logo" >
 
-				<h1  style="font-size: 22px; font-weight: 700;margin-bottom: 0px;"><i class="fab fa-trello logo-icon" aria-hidden="true"></i>Trello</h1>
+				<h1  style="font-size: 22px;font-weight: 700;margin-bottom: 0px;"><a th:href="@{/index}"><i class="fab fa-trello logo-icon" aria-hidden="true"></i></a>Trello</h1>
 
 			</div>
-			<div class="user-settings">
+			<div class="user-settings" style="margin-left: 40px">
 
 <!--				<button class="user-settings-btn1 btn1" aria-label="Create" onclick="on()">-->
 <!--					<i class="fas fa-plus" aria-hidden="true"></i>-->
 <!--				</button>-->
 
 
-				<button class="user-settings-btn1 btn1" aria-label="Information">
-					<i class="fas fa-info-circle" aria-hidden="true"></i>
-				</button>
+<!--				<button class="user-settings-btn1 btn1" aria-label="Information">-->
+<!--					<i class="fas fa-info-circle" aria-hidden="true"></i>-->
+<!--				</button>-->
 
-				<button class="user-settings-btn1 btn1" aria-label="Notifications">
-					<i class="fas fa-bell" aria-hidden="true"></i>
-				</button>
+<!--				<button class="user-settings-btn1 btn1" aria-label="Notifications">-->
+<!--					<i class="fas fa-bell" aria-hidden="true"></i>-->
+<!--				</button>-->
 
-				<button class="user-settings-btn1 btn1 active1" aria-label="User Settings">
+				<button class="user-settings-btn1 btn1 active1" aria-label="User Settings" style="float: right;">
 					<i class="fas fa-user-circle" aria-hidden="true"></i>
 				</button>
 
@@ -114,7 +106,7 @@
 					<ul style="margin-bottom: 0px;">
 						<li><a th:if="${#request.getUserPrincipal() == null}" href="/login">Anonymous</a></li>
 						<li><a th:if="${#request.getUserPrincipal() != null}"  href="#" th:utext="${#request.userPrincipal.name}"> </a></li>
-						<li><a th:if="${#request.getUserPrincipal() != null}"  href="#">Hồ sơ tài khoản </a></li>
+<!--						<li><a th:if="${#request.getUserPrincipal() != null}"  href="#">Hồ sơ tài khoản </a></li>-->
 						<li><a th:if="${#request.getUserPrincipal() != null}"  href="/logout">Đăng xuất</a></li>
 					</ul>
 				</div>

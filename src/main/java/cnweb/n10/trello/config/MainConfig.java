@@ -38,7 +38,7 @@ public class MainConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll();
         // Các trang chỉ truy cập được khi là khách
         http.authorizeRequests().antMatchers("/login").access("isAnonymous()");
-        http.authorizeRequests().antMatchers("/board","/index").access("hasAuthority('USER')");
+        http.authorizeRequests().antMatchers("/board","/index","/task","/searchBoard").access("hasAuthority('USER')");
 //        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/index");
         http.authorizeRequests().and().formLogin()
                 .loginProcessingUrl("/j_spring_security") // Submit URL
@@ -48,7 +48,7 @@ public class MainConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 // Cấu hình cho Logout Page.
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/index");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 
     }
     @Bean

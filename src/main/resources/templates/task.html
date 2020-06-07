@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Board</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/board.css">
+	<link rel="stylesheet" href="css/menu_doc.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<!-- link bootstrap -->
+	<link href="css/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="css/web/jquery/jquery.min.js"></script>
+	<script src="css/web/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		function on4() {
+			document.getElementById("hide_description").style.display = "none";
+			document.getElementById("show_description").style.display = "block";
+		}
+
+		function off4() {
+			document.getElementById("hide_description").style.display = "block";
+			document.getElementById("show_description").style.display = "none";
+		}
+		//ẩn hiện form sửa tên task
+		function on3() {
+			document.getElementById("hidetaskname").style.display = "block";
+			document.getElementById("showtaskname").style.display = "none";
+		}
+
+		function off3() {
+			document.getElementById("hidetaskname").style.display = "none";
+			document.getElementById("showtaskname").style.display = "block";
+		}
+	</script>
+</head>
+<style type="text/css">
+	.hide{
+		display: none;
+	}
+</style>
+
+<body style="    background-color: #0079bf;">
+<!-- header -->
+<header>
+	<div th:replace="/header :: header"/>
+</header>
+<!-- End of header -->
+
+
+<!-- Board info bar -->
+<section class="board-info-bar">
+
+	<div class="board-controls">
+
+		<button class="board-title btn1">
+			<h2>Group 10-CN web </h2>
+		</button>
+
+		<button class="star-btn1 btn1" aria-label="Star Board">
+			<i class="far fa-star" aria-hidden="true"></i>
+		</button>
+
+		<button class="personal-btn1 btn1">Personal</button>
+
+		<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>
+
+	</div>
+
+	<!-- <button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button> -->
+
+</section>
+<!-- End of board info bar -->
+
+<!-- Lists container -->
+<section class="lists-container" >
+
+	<!-- thẻ thứ 1 -->
+	<div class="list" th:each="rlist : ${ResList}">
+
+		<h3 class="list-title" th:text="${rlist.NAME}"></h3>
+
+		<ul class="list-items" th:each="tasklist : ${taskList}" style="padding: 0 8px; margin-bottom: 0">
+			<li th:each="i : ${Li}" th:if="${(i < tasklist.size()) && (tasklist.get(i).getLID() == rlist.getID())}" th:utext="${tasklist.get(i).NAME}"  style="margin: 5px; line-height: 20px"></li>
+		</ul>
+
+		<div  th:class="'hide showcard'+${rlist.getID()}"> <!-- showcard+i ở đây, là showcard+1  -->
+			<form th:action="@{/addTask}" th:object="${task}" method="post">
+				<input type="text" th:field="*{NAME}" placeholder="Nhập tiêu đề cho thẻ này..." class="form-control">
+				<input type="hidden" name="BID" id="BID2" th:value="${param.BID}">
+				<input type="hidden" name="USERNAME" id="USERNAME2" th:value="${#request.userPrincipal.getName()}">
+				<input type="hidden" name="LID" id="LID" th:value="${rlist.getID()}">
+				<div style="display: flex;" >
+					<button class="btn btn-success  btn-sm" >Thêm thẻ</button>
+					<!-- <button class="btn btn-danger btn-sm" value="hide"><i class="fas fa-times"></i></button> -->
+					<i class="fas fa-window-close text-danger" style="font-size: 31px; cursor: pointer;" ></i>
+				</div>
+			</form>
+
+		</div>
+		<button th:class="'add-card-btn1 btn1 hidecard'+${rlist.getID()}" style="margin-top: 15px"><!--hidecard+i ở đây, là hidecard+1  -->
+			Add a card</button>
+	</div>
+	<!-- hết thẻ thứ 1 -->
+</section>
+<!-- End of lists container -->
+
+<div id="overlay1" style="display: block">
+	<div class="btn-light rounded " style="width: 500px; height: 550px; margin: 30px  auto; margin-bottom: 0px;">
+		<div class="ml-4 mb-4 pt-4">
+			<div style="display: flex">
+				<i class="fas fa-id-card" style="width: 90%"></i>
+				<span style="width: 20px; height: 20px;">
+			<a th:href="@{/deleteT?ID={ID}(ID=${task.ID})}" class="star-btn1 btn1" aria-label="Star Board" style="width: 16px; float: left">
+				<i class="fa fa-trash-o" aria-hidden="true" style="font-size: 20px"></i>
+			</a>
+		</span>
+			</div>
+
+			<p th:object="${task}" id="showtaskname" onclick="on3()" class="text-info" th:utext="${task.getNAME()}"></p>
+			<form style="display: none;" id="hidetaskname" method="post" action="/save" th:object="${task}">
+				<input type="text" name="NAME" id="NAME"  th:value="${task.getNAME()}" style="border: none;"><input type="submit" value="Lưu" class="btn btn-success btn-sm col-lg-1" ><i class="fas fa-window-close text-danger" style="font-size: 23px; cursor: pointer; "  onclick="off3()"></i>
+				<input type="hidden" th:field="*{BID}" th:value="${task.getBID()}">
+				<input type="hidden" th:field="*{ID}" th:value="${task.getID()}">
+				<input type="hidden" th:field="*{LID}" th:value="${task.getLID()}">
+				<input type="hidden" th:field="*{USERNAME}" th:value="${task.getUSERNAME()}">
+			</form>
+			<p style="font-size: 13px;">trong danh sách <span style="font-weight: 700" th:utext="${tl.NAME}"></span></p>
+		</div>
+		<div class="ml-4 mb-4">
+			<p><i class="fas fa-bars"></i><span style="font-weight: 700"> Mô tả</span></p>
+			<div style="display: block; " >
+				<div th:object="${task}" id="hide_description" onclick="on4()">
+					<p class="text-info" th:if="${task.getDescription() == null}" th:utext="${'Thêm mô tả...'}"></p>
+					<p class="text-info" th:if="${task.getDescription() != null}" th:utext="${task.getDescription()}"></p>
+				</div>
+				<form style="display: none;" id="show_description" method="post" action="/save" th:object="${task}">
+					<input type="hidden" name="NAME" id="NAME2"  th:value="${task.getNAME()}" style="border: none;">
+					<input type="hidden" th:field="*{BID}" th:value="${task.getBID()}">
+					<input type="hidden" th:field="*{ID}" th:value="${task.getID()}">
+					<input type="hidden" th:field="*{LID}" th:value="${task.getLID()}">
+					<input type="hidden" th:field="*{USERNAME}" th:value="${task.getUSERNAME()}">
+					<textarea style="display: block; margin-left: 0; width: 450px; height: 100px;	border: 1px solid;"  th:utext="${task.getDescription()}" name="Description" placeholder="Thêm mô tả..."  ></textarea>
+					<i class="fas fa-window-close text-danger" style="font-size: 23px; cursor: pointer; float: right; margin-right: 25px;"  onclick="off4()"></i>
+					<input  type="submit" style="float: right; " value="Lưu" class="btn btn-success btn-sm col-lg-1" >
+				</form>
+			</div>
+		</div>
+		<div class="ml-4 mb-4">
+<!--			<p><i class="far fa-calendar-check"></i><span style="font-weight: 700"> Việc cần làm</span></p>-->
+		</div>
+		</div>
+	<div class="row" style="margin-left: 66%" th:with="BID = ${param.BID}">
+		<i class="fas fa-window-close text-danger" style="font-size: 31px;" th:onclick="|window.location.href='@{/board?BID={BID}(BID=${BID})}'|"></i>
+	</div>
+	</div>
+
+</div>
+
+</body>
+</html>

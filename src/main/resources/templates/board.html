@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/board.css">
 	<link rel="stylesheet" href="css/menu_doc.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -54,7 +55,26 @@
 			});
 
 		});
+		//ẩn hiện thẻ trong danh sách thêm list
+		function on4() {
+			document.getElementById("hide_description").style.display = "none";
+			document.getElementById("show_description").style.display = "block";
+		}
 
+		function off4() {
+			document.getElementById("hide_description").style.display = "block";
+			document.getElementById("show_description").style.display = "none";
+		}
+		//ẩn hiện thẻ trong danh sách thêm checklist công việc
+		function on3() {
+			document.getElementById("hidechecklist").style.display = "none";
+			document.getElementById("showchecklist").style.display = "block";
+		}
+
+		function off3() {
+			document.getElementById("hidechecklist").style.display = "block";
+			document.getElementById("showchecklist").style.display = "none";
+		}
 		//ẩn hiện thẻ trong danh sách thêm list
 		function on2() {
 			document.getElementById("hidelist").style.display = "none";
@@ -92,7 +112,13 @@
 		function xanhla() {
 			document.getElementById("color_background").style.background = "#59a759";
 		}
+		function processAjaxData(response, urlPath){
+			document.getElementById("content").innerHTML = response.html;
+			document.title = response.pageTitle;
+			window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+		}
 	</script>
+
 </head>
 <style type="text/css">
 	.hide{
@@ -117,17 +143,17 @@
 			<h2>Group 10-CN web </h2>
 		</button>
 
-		<button class="star-btn1 btn1" aria-label="Star Board">
-			<i class="far fa-star" aria-hidden="true"></i>
-		</button>
+<!--		<button class="star-btn1 btn1" aria-label="Star Board">-->
+<!--			<i class="far fa-star" aria-hidden="true"></i>-->
+<!--		</button>-->
 
-		<button class="personal-btn1 btn1">Personal</button>
+<!--		<button class="personal-btn1 btn1">Personal</button>-->
 
-		<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>
+<!--		<button class="private-btn1 btn1"><i class="fas fa-briefcase private-btn1-icon" aria-hidden="true"></i>Private</button>-->
 
 	</div>
 
-	<button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button>
+	<!-- <button class="menu-btn1 btn1"><i class="fas fa-ellipsis-h menu-btn1-icon" aria-hidden="true"></i>Show Menu</button> -->
 
 </section>
 <!-- End of board info bar -->
@@ -137,11 +163,18 @@
 
 	<!-- thẻ thứ 1 -->
 	<div class="list" th:each="rlist : ${ResList}">
+		<div style="display: flex">
+			<h3 style="width: 250px;"  class="list-title" th:text="${rlist.NAME}"></h3>
 
-		<h3 class="list-title" th:text="${rlist.NAME}"></h3>
+			<span style="width: 20px; height: 20px;">
+			<a th:href="@{/deleteL?ID={ID}(ID=${rlist.ID})}" class="star-btn1 btn1" aria-label="Star Board" style="width: 16px; float: left">
+				<i class="fa fa-trash-o" aria-hidden="true" style="font-size: 20px"></i>
+			</a>
+		</span>
+		</div>
 
 		<ul class="list-items" th:each="tasklist : ${taskList}" style="padding: 0 8px; margin-bottom: 0">
-			<li th:each="i : ${Li}" th:if="${(i < tasklist.size()) && (tasklist.get(i).getLID() == rlist.getID())}" th:utext="${tasklist.get(i).NAME}"   onclick="on1()" style="margin: 5px; line-height: 20px"></li>
+			<li th:each="i : ${Li}" th:if="${(i < tasklist.size()) && (tasklist.get(i).getLID() == rlist.getID())}" th:utext="${tasklist.get(i).NAME}" th:onclick="|window.location.href='@{/task?BID={BID}(BID=${tasklist.get(i).getBID()})}@{&TID={TID}(TID=${tasklist.get(i).getID()})}'|" style="margin: 5px; line-height: 20px"></li>
 		</ul>
 
 		<!-- ông chỉnh sửa làm sao để mỗi khi tạo list mới thì class showcard i,hidecard i tự tăng là ok  -->
@@ -185,18 +218,6 @@
 </section>
 <!-- End of lists container -->
 
-<!-- OverLay 1 -->
-<div id="overlay1">
-	<form class="form-group">
-		<h3>Nội Dung Thẻ </h3>
-		<textarea id="comment"></textarea>
-		<div class="row" style="margin-left: 67%" >
-			<button class="btn btn-success btn-sm col-lg-1" >Lưu </button>
-			<i class="fas fa-window-close text-danger" style="font-size: 31px;" onclick="off1()"></i></button>
-		</div>
-	</form>
-
-</div>
 
 </body>
 </html>

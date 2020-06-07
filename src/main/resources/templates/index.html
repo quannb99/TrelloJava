@@ -14,7 +14,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<!-- link bootstrap -->
 	<link href="css/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Bootstrap core JavaScript -->
 	<script src="css/web/jquery/jquery.min.js"></script>
 	<script src="css/web/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -37,17 +37,25 @@
 			document.getElementById("overlay").style.display = "none";
 		}
 		//chuyển màu cho backgroud
-		function xanhduong() {
+		function PR() {
 			document.getElementById("color_background").style.background = "#17a2b8";
 		}
 
-		function vang() {
+		function SF() {
 			document.getElementById("color_background").style.background = "#f1c40f";
 		}
-		function xanhla() {
-			document.getElementById("color_background").style.background = "#59a759";
+		function Em() {
+			document.getElementById("color_background").style.background = "#2ecc71";
 		}
-
+		function GS() {
+			document.getElementById("color_background").style.background = "#16a085";
+		}
+		function Po() {
+			document.getElementById("color_background").style.background = "#c0392b";
+		}
+		function MB() {
+			document.getElementById("color_background").style.background = "#2c3e50";
+		}
 	</script>
 </head>
 
@@ -63,8 +71,10 @@
 											style="margin-right: 2px;"></i>Bảng</button>
 
 		<div class="board-search">
-			<input type="text" name="search" id="search" class="board-search-input" aria-label="Board Search">
-			<i class="fas fa-search search-icon" aria-hidden="true"></i>
+			<form style="height: 30px;" method="post" th:action="@{/searchBoard}">
+				<input type="text" name="pattern" id="pattern" class="board-search-input" aria-label="Board Search">
+				<button style="border: 0;" type="submit"><i class="fas fa-search search-icon" aria-hidden="true"></i></button>
+			</form>
 		</div>
 	</div>
 	<div class="logo">
@@ -73,20 +83,19 @@
 																			 aria-hidden="true"></i>Trello</h1>
 
 	</div>
-	<div class="user-settings">
+	<div class="user-settings" style="margin-left: 160px;">
 
 		<button class="user-settings-btn1 btn1" aria-label="Create" onclick="on()">
 			<i class="fas fa-plus" aria-hidden="true"></i>
 		</button>
 
+<!--		<button class="user-settings-btn1 btn1" aria-label="Information">-->
+<!--			<i class="fas fa-info-circle" aria-hidden="true"></i>-->
+<!--		</button>-->
 
-		<button class="user-settings-btn1 btn1" aria-label="Information">
-			<i class="fas fa-info-circle" aria-hidden="true"></i>
-		</button>
-
-		<button class="user-settings-btn1 btn1" aria-label="Notifications">
-			<i class="fas fa-bell" aria-hidden="true"></i>
-		</button>
+<!--		<button class="user-settings-btn1 btn1" aria-label="Notifications">-->
+<!--			<i class="fas fa-bell" aria-hidden="true"></i>-->
+<!--		</button>-->
 
 		<button class="user-settings-btn1 btn1 active1" aria-label="User Settings">
 			<i class="fas fa-user-circle" aria-hidden="true"></i>
@@ -97,7 +106,7 @@
 			<ul style="margin-bottom: 0px;">
 				<li><a th:if="${#request.getUserPrincipal() == null}" href="/login">Anonymous</a></li>
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#" th:utext="${#request.userPrincipal.name}"> </a></li>
-				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#">Hồ sơ tài khoản </a></li>
+<!--				<li><a th:if="${#request.getUserPrincipal() != null}"  href="#">Hồ sơ tài khoản </a></li>-->
 				<li><a th:if="${#request.getUserPrincipal() != null}"  href="/logout">Đăng xuất</a></li>
 			</ul>
 		</div>
@@ -121,56 +130,60 @@
 		<div class="col-lg-3">
 
 			<div class="list-group" style="padding-bottom: 5px;" >
-				<a href="/board" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
-				<a href="#" class="list-group-item"><i class="fas fa-book logo-icon"></i></i>Mẫu</a>
 				<a href="/index" class="list-group-item"><i class="fas fa-house-damage logo-icon"></i>Trang chủ</a>
+				<a href="/index" class="list-group-item"><i class="fab fa-trello logo-icon"></i>Bảng</a>
+<!--				<a href="#" class="list-group-item"><i class="fas fa-book logo-icon"></i></i>Mẫu</a>-->
+
 			</div>
 
 		</div>
 		<!-- /.col-lg-3 -->
 
 		<div class="col-lg-9">
-			<h5><i class="far fa-clock logo-icon"></i> Bảng xem gần đây </h5>
+			<h5 th:if="${starboards.size()} != 0"><i class="far fa-star" aria-hidden="true" ></i> Bảng đánh dấu sao </h5>
 			<div class="row">
 
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class="bg-info rounded" >
-						<a href="#" style="min-height: 100px;display:block ">
-							<p style="color: white; padding-left: 5px;"> tên bảng </p>
+				<div class="col-lg-3 col-md-6 mb-4" th:each="board : ${starboards}">
+					<div class=" bg-info rounded"  th:style="'background-color: '+ ${board.BGR} + '!important;' + 'height:100px;'">
+						<a th:href="@{/board?BID={BID}(BID=${board.ID})}" style="min-height: 82px;  display: block; text-decoration: none;">
+							<p style="color: white; padding-left: 5px;" th:text="${board.NAME}">  </p>
 						</a>
-
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class=" bg-info rounded" >
-						<a href="#" style="min-height: 100px;display:block ">
-							<p style="color: white; padding-left: 5px;"> tên bảng </p>
+						<span>
+						<a th:href="@{/deleteB?ID={ID}(ID=${board.ID})}" class="star-btn1 btn1" aria-label="Star Board" style="width: 16px; float: left">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
 						</a>
-
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class=" bg-info rounded" >
-						<a href="#" style="min-height: 100px;display:block ">
-							<p style="color: white; padding-left: 5px;"> tên bảng </p>
+						</span>
+						<span>
+						<a th:href="@{/unstar?ID={ID}(ID=${board.ID})}" class="star-btn1 btn1" aria-label="Star Board" style="width: 16px; float: right; margin-right: 10px;">
+							<i class="far fa-star" aria-hidden="true" ></i>
 						</a>
-
+						</span>
 					</div>
-				</div>
-
-
+			</div>
 			</div>
 			<!-- /.row -->
+
 			<h5><i class="far fa-user logo-icon"></i></i> Bảng cá nhân </h5>
 			<div class="row">
 
 				<div class="col-lg-3 col-md-6 mb-4" th:each="board : ${boards}">
-<!--					<a th:href="@{/edit?id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>-->
-					<a th:href="@{/board?BID={BID}(BID=${board.ID})}" style="min-height: 100px; display: block; text-decoration: none;">
 					<div class=" bg-info rounded"  th:style="'background-color: '+ ${board.BGR} + '!important;' + 'height:100px;'">
+						<a th:href="@{/board?BID={BID}(BID=${board.ID})}" style="min-height: 82px;  display: block; text-decoration: none;">
 							<p style="color: white; padding-left: 5px;" th:text="${board.NAME}">  </p>
+						</a>
+						<span>
+						<a th:href="@{/deleteB?ID={ID}(ID=${board.ID})}" class="star-btn1 btn1" aria-label="Star Board" style="width: 16px; float: left">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+						</a>
+						</span>
+						<span>
+						<a th:href="@{/star?ID={ID}(ID=${board.ID})}" class="star-btn1 btn1" aria-label="Star Board" style="width: 16px; float: right; margin-right: 10px;">
+							<i class="far fa-star" aria-hidden="true" ></i>
+						</a>
+						</span>
+
 					</div>
-					</a>
+
 				</div>
 
 				<div class="col-lg-3 col-md-6 mb-4">
@@ -195,7 +208,7 @@
 
 <!-- OverLay -->
 <div id="overlay">
-	<div style="width: 360px; margin: 30px auto;">
+	<div style="width: 450px; margin: 30px auto;">
 		<form class="form-group clearfix" th:action="@{/index}" method="post" th:object="${board}" >
 
 			<div class="fl-left rounded" style="width: 180px; min-height: 112px; background: #17a2b8;position: relative;" id="color_background">
@@ -203,15 +216,19 @@
 				<button class="btn btn-success btn-sm " style="margin-top: 53px;" type="submit">Tạo Bảng</button>
 				<i class="fas fa-window-close text-danger" style="font-size: 35px; position: absolute;top: 79px;" onclick="off()"></i>
 			</div>
-			<div class="fl-left rounded" style="width: 175px; background: #17a2b8; margin-left: 5px;" >
-				<ul>
-					<li style="font-weight: 500;">Chọn phông nền bảng </li>
-					<li><input type="radio" th:field="*{BGR}" name="bc" value="#17a2b8" onclick="xanhduong()" />Xanh Dương</li>
-					<li><input type="radio" th:field="*{BGR}" name="bc" value="#f1c40f" onclick="vang()" />Vàng</li>
-					<li><input type="radio" th:field="*{BGR}" name="bc" value="#59a759" onclick="xanhla()" />Xanh lá</li>
+			<div class="fl-left rounded flexli" style="width: 240px; background: #17a2b8; margin-left: 5px;" >
+				<ul style="display: flex; flex-wrap: wrap">
+					<li style="font-weight: 500; width: 100%">Chọn phông nền bảng </li>
+					<li><input type="radio" th:field="*{BGR}" name="bc" value="#17a2b8" onclick="PR()" />Peter River</li>
+					<li style="margin-left: 20px"><input type="radio" th:field="*{BGR}" name="bc" value="#f1c40f" onclick="SF()" />Sun Flower</li>
+					<li><input type="radio" th:field="*{BGR}" name="bc" value="#2ecc71" onclick="Em()" />Emerald</li>
+					<li style="margin-left: 39px"><input type="radio" th:field="*{BGR}" name="bc" value="#16a085" onclick="GS()" />Green Sea</li>
+					<li><input type="radio" th:field="*{BGR}" name="bc" value="#c0392b" onclick="Po()" />Pomegranate</li>
+					<li style="margin-left: 2px"><input type="radio" th:field="*{BGR}" name="bc" value="#2c3e50" onclick="MB()" />Midnight Blue</li>
 				</ul>
 			</div>
 			<input type="hidden" th:value="${#request.getUserPrincipal().getName()}" name="USERNAME" id="USERNAME" >
+			<input type="hidden" name="STAR" value="0">
 		</form>
 	</div>
 </div>
