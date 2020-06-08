@@ -2,9 +2,11 @@ package cnweb.n10.trello.controller;
 
 
 import cnweb.n10.trello.model.Board;
+import cnweb.n10.trello.model.Comment;
 import cnweb.n10.trello.model.TList;
 import cnweb.n10.trello.model.Task;
 import cnweb.n10.trello.repository.BoardRepository;
+import cnweb.n10.trello.repository.CommentRepository;
 import cnweb.n10.trello.repository.TListRepository;
 import cnweb.n10.trello.repository.TaskRepository;
 import cnweb.n10.trello.service.TListService;
@@ -32,6 +34,8 @@ public class OtherMapping {
     TaskService taskService;
     @Autowired
     BoardRepository boardRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
     @GetMapping("/board")
     public String board(@RequestParam("BID") Integer BID, Model model, Principal principal) {
@@ -76,6 +80,9 @@ public class OtherMapping {
         }
         TList tl = tListRepository.findByID(task.getLID());
         model.addAttribute("tl",tl);
+        model.addAttribute("comment", new Comment());
+        List<Comment> comments = commentRepository.findAllByTID(TID);
+        model.addAttribute("comments",comments);
         return "task";
     }
     @PostMapping("/addList")
@@ -116,5 +123,11 @@ public class OtherMapping {
         List<Board> boards = boardRepository.findBoardsByNameAndUSERNAME("%" + pattern + '%',username);
         model.addAttribute("boards",boards);
         return "searchBoard";
+    }
+    @PostMapping("/addComment")
+    public String addComment(@ModelAttribute Comment comment){
+        taskService.add(comment);
+        Task task = taskRepository.findByID(comment.getTID());
+        return "redirect:/task?BID=" + task.getBID() + "&TID=" + task.getID();
     }
 }

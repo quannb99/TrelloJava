@@ -36,6 +36,16 @@
 			document.getElementById("hidetaskname").style.display = "none";
 			document.getElementById("showtaskname").style.display = "block";
 		}
+
+		function on5() {
+			document.getElementById("hidecomment").style.display = "block";
+			document.getElementById("showcomment").style.display = "none";
+		}
+
+		function off5() {
+			document.getElementById("hidecomment").style.display = "none";
+			document.getElementById("showcomment").style.display = "block";
+		}
 	</script>
 </head>
 <style type="text/css">
@@ -109,7 +119,7 @@
 </section>
 <!-- End of lists container -->
 
-<div id="overlay1" style="display: block">
+<div id="overlay1" style="display: block" >
 	<div class="btn-light rounded " style="width: 500px; height: 550px; margin: 30px  auto; margin-bottom: 0px;">
 		<div class="ml-4 mb-4 pt-4">
 			<div style="display: flex">
@@ -151,7 +161,14 @@
 			</div>
 		</div>
 		<div class="ml-4 mb-4">
-<!--			<p><i class="far fa-calendar-check"></i><span style="font-weight: 700"> Việc cần làm</span></p>-->
+			<p><i class="far fa-calendar-check"></i><span style="font-weight: 700">Bình luận</span></p>
+			<p th:each="rcomment : ${comments}" class="text-success" th:utext="${rcomment.getCONTENT()}"></p>
+			<p id="showcomment" onclick="on5()" class="text-info" >Thêm bình luận</p>
+			<form style="display: none;" id="hidecomment" method="post" action="/addComment" th:object="${comment}">
+				<textarea style="display: block; margin-left: 0; width: 450px; height: 100px;	border: 1px solid;"   name="CONTENT" placeholder="Thêm bình luận..."  ></textarea>
+				<input type="hidden" name="TID" th:value="${param.TID}">
+				<input type="submit" value="Lưu" class="btn btn-success btn-sm col-lg-1" ><i class="fas fa-window-close text-danger" style="font-size: 23px; cursor: pointer; "  onclick="off5()"></i>
+			</form>
 		</div>
 		</div>
 	<div class="row" style="margin-left: 66%" th:with="BID = ${param.BID}">
